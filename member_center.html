@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstem | 會員中心</title>
+    @@include('./layout/style.html')
+    <!-- 以下可以放自己的link -->
+</head>
+
+<body>
+    <!-- header -->
+    @@include('./layout/header.html')
+    <main class="member_center" id="member_center">
+    <h2>會員中心</h2>
+    <section class="col-3 left">
+        <ul class=" select">
+            <li class="-on"><i class="bi bi-person-circle"></i>會員資料<i class="bi bi-chevron-right right_icon"></i></li>
+            <li class=""><i class="order_icon"><img src="./pic/img/icon/order_icon_.png" alt=""></i>訂單記錄<i class="bi bi-chevron-right right_icon"></i></li>
+            <li class=""><i class="bi bi-joystick"></i>遊戲庫<i class="bi bi-chevron-right right_icon"></i></li>
+            <li class=""><i class="ticket_icon "><img src="./pic/img/icon/ticke_iocn.png" alt=""></i>會員優惠券<i class="bi bi-chevron-right right_icon"></i></li>
+        </ul>
+    </section>
+    <i class="bi bi-arrow-left back"></i>
+    <div id="member_infoo">
+    <!-- 會員訂單 -->
+    <section class="col-9 right -oon" >
+        <div class="describe">
+            <h2>我的檔案</h2>
+            <p>管理你的檔案以保護你的帳戶</p>
+          </div>
+          <div class="member_info" id="member_info">
+            <div class="img">
+                <div class="img_box">
+                  <img :src="selectedImage" alt="Selected Image">
+                </div>
+              </div>
+            <div class="info">
+              <div class="info_left">
+                <div class="mail">
+                  <p>使用者帳號：</p>
+                  <p>{{ email }}</p>
+                </div>
+                <div class="name">
+                  <p>姓名：</p>
+                  <p>{{ name }}</p>
+                </div>
+                <div class="nickname">
+                  <p>暱稱：</p>
+                  <p>{{ nickname }}</p>
+                </div>
+              </div>
+              <div class="info_right">
+                <div class="phone">
+                  <p>手機號碼：</p>
+                  <p>{{ phone }}</p>
+                </div>
+                <div class="birth">
+                  <p>生日：</p>
+                  <p>{{ birthday }}</p>
+                </div>
+                <div class="gender">
+                  <p>性別：</p>
+                  <p>{{ gender }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="btn revise">修改</div>
+          </div>
+    </section>
+
+    <!-- 訂單修改 -->
+        <div class="right col-9 revise_box" v-show="showForm">
+            <h2>我的檔案</h2>
+        <div class="member_info_revise ">
+            <div class="img">
+                <div class="img_box">
+                  <img :src="selectedImage" alt="Selected Image">
+                </div>
+                <div class="btn" @click="openFileInput">選擇圖片</div>
+                <p>檔案大小：最大1MB<br>檔案限制：JPEG、PNG</p>
+                <input type="file" ref="fileInput" style="display: none" @change="handleFileChange">
+              </div>
+            <div class="info" id="info">
+                <div class="info_left">
+                    <div class="mail">
+                    <p>使用者帳號：</p>
+                    <p>{{ email }}</p>
+                </div>
+                <div class="name">
+                    <p>姓名：</p>
+                    <input type="text" id="name" placeholder="請輸入姓名" v-model="name" @blur="validateName" name="name">
+                     <p v-if="nameError" class="error">{{ nameError }}</p>
+                </div>
+                <div class="nickname">
+                    <p>暱稱：</p>
+                    <input type="text" id="nickname" placeholder="請輸入暱稱" v-model="nickname" @blur="validateNickname" name="nickname">
+                    <p v-if="nicknameError" class="error">{{ nicknameError }}</p>
+                </div>
+                </div>
+                <div class="info_right">
+                    <div class="phone">
+                    <p>手機號碼：</p>
+                    <input type="text" id="phone" placeholder="請輸入電話號碼" v-model="phone" @blur="validatePhone" name="phone">
+                    <p v-if="phoneError" class="error">{{ phoneError }}</p>
+                </div>
+                <label for="birth" class="birth">
+                    <p>生日</p>
+                    <p>{{ birthday }}</p>
+                </label>
+                <p class="margin"> 性別 </p>
+                <div class="gender">
+                  <label><input type="radio" id="gender-m" name="gender" value="M" v-model="gender_or" :checked="gender_or === 'M'">男性</label>
+                  <label><input type="radio" id="gender-f" name="gender" value="F" v-model="gender_or" :checked="gender_or === 'F'">女性</label>
+                  <label><input type="radio" id="gender-x" name="gender" value="X" v-model="gender_or" :checked="gender_or === 'X'">不公開</label>
+              </div>              
+                </div>
+                </div>
+                <div class="btn save" @click="showEditForm">儲存</div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+    <!-- 訂單記錄 -->
+    <section class="col-9 right">
+        <div class="order" id="order">
+          <h3>訂單記錄</h3>
+          <div class="form_title">
+            <p>訂單編號</p>
+            <p>購買日期</p>
+            <p>購買金額</p>
+            <p>訂單狀態</p>
+          </div>
+          <div class="order_in" v-for="(order, index) in orders" :key="order.orderId">
+            <div class="order_info">
+              <div class="flex_grow">
+                <i :class="{'bi bi-dash-lg open_btn': order.showDetails, 'bi bi-plus-lg open_btn': !order.showDetails}" @click="toggleOrderDetails(index)"></i>
+                <p class="ID">{{ order.orderId }}</p>
+              </div>
+              <p>{{ order.purchaseDate }}</p>
+              <p>$ {{ order.purchaseAmount }}</p>
+              <p>{{ order.orderStatus }}</p>
+            </div>
+            <div v-if="order.showDetails" class="detail_order">
+              <div class="detail_order_title">
+                <p>訂單內容</p>
+                <p>商品折扣</p>
+                <p>購買金額</p>
+              </div>
+              <div class="detail_order_info">
+                <div class="item" v-for="item in order.items" :key="item.itemId">
+                  <div class="item_info">
+                    <img :src="item.image" alt="">
+                    <p>{{ item.name }}</p>
+                  </div>
+                  <div class="dis" :class="{'closed': item.discount === 'None' || item.item_discounts_or === ''}">
+                    <div class="discount">{{ item.discount }}</div>
+                  </div>
+                  <div class="price_box" >
+                    <div class="price">$ {{ item.price }}</div>
+                    <div class="price_original">{{ item.originalPrice }}</div>
+                  </div>
+                </div>
+                <div class="settlement">
+                  <div class="coupon">
+                    <p>優惠券使用</p>
+                    <p class="settlement_right">{{ order.coupon }}</p>
+                  </div>
+                  <div class="dis">
+                    <p>折扣</p>
+                    <p class="settlement_right">{{ order.discount }}</p>
+                  </div>
+                  <div class="sum">
+                    <p>總金額</p>
+                    <p class="settlement_right">$ {{ order.totalAmount }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </section>
+         
+      
+    <!-- 遊戲庫 -->
+    <div id="game_library">
+      <section class="col-9 right">
+        <div class="game_library">
+          <h3>遊戲庫</h3>
+          <div class="game_box">
+            <div class="game_flex" v-for="game in games" :key="game.id">
+              <div class="game_info">
+              <img :src="game.imageUrl" alt="">
+              <div class="game_text">
+                <p class="name">{{ game.name }}</p>
+                <div class="flex">
+                  <p>遊玩時數：{{ game.playTime }}小時</p>
+                  <p>上次遊玩日期：{{ game.lastPlayDate }}</p>
+                  <div class="ach">
+                    <p>成就</p> 
+                    <div class="line_box"><div class="line" :style="{ width: game.lineBoxWidth }"></div></div>
+                    <p>{{ game.achievements }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="btn" @click="startGame(game)">開始遊戲</div>
+              <p class="review" @click="showReviewForm(game.id)">{{ game.addComment }}</p>
+              <!-- <i class="bi bi-three-dots po_icon"></i> -->
+          </div>
+              <div class="review_box" v-if="showReview[game.id]">
+                <p>遊戲整理滿意度：</p>
+                <i class="bi" :class="{ 'bi-star-fill': n <= reviewRating[game.id], 'bi-star': n > reviewRating[game.id] }" v-for="n in 5" @click="setRating(n, game.id)"></i>
+                <br>
+                <br>
+                <p>評論：</p>
+                <br>
+                <textarea v-model="reviewContent[game.id]"></textarea>
+                <button class="btn" @click="submitReview(game.id)">送出</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+      
+      
+    <!-- 優惠券 -->
+    <section class="col-9 right">
+        <div class="coupon">
+            <h3>會員優惠券</h3>
+            <div class="coupon_box" id="coupon_box">
+                <div class="add">
+                    <p>新增優惠券</p>
+                    <input type="text" placeholder="輸入優惠券代碼" v-model="couponCode">
+                    <button class="btn" @click="applyCoupon">使用</button>
+                </div>
+                <h3>我的優惠券</h3>
+                <p class="coupon_hint">{{ coupon_hint }}</p>
+                <div v-for="coupon in coupons" :key="coupon.id" class="coupon_item">
+                    <div class="coupon_text">
+                      <p class="title">{{ coupon.title }}</p>
+                      <p>使用期限：{{ coupon.validity }}</p>
+                      <p>使用規則：{{ coupon.rules }}</p>
+                    </div>
+                    <div class="coupon_dis">
+                      <p>{{ coupon.discount }}</p>
+                      <p>{{ coupon.discounts }}</p>
+                      <p>{{ coupon.type }}</p>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </section>
+    </main>
+    
+     
+    
+      
+    <!-- footer -->
+    @@include('./layout/footer.html')
+    <!-- javascript -->
+    @@include('./layout/js.html')
+    <!-- 以下可以放自己的js -->
+ 
+    <!-- nav的點擊 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const member_info = new Vue({
+        el: '#member_infoo',
+        data: {
+              email: '',
+              name: '',
+              nickname: '',
+              phone: '',
+              birthday: '',
+              gender: '',
+              showForm: 'flase',
+              nameError: '',
+              nicknameError: '',
+              phoneError: '',
+              selectedImage: './pic/img/member_photo/default.png',
+              imageFile: null,
+              gender_or: ''
+          },
+          mounted() {
+            this.getMemberData();
+          },
+          methods: {
+            openFileInput() {
+                this.$refs.fileInput.click();
+                },
+                handleFileChange(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    this.selectedImage = URL.createObjectURL(file);
+                    this.imageFile = file;
+                    console.log(this.imageFile.name);
+                }
+                },
+            getMemberData() {
+            axios.defaults.withCredentials = true;
+            axios.post(php_url + 'login_status.php')
+            .then((response) => {
+                this.email = response.data.account;
+
+                const formData = new FormData();
+                formData.append("email" , this.email);
+
+                axios.post(php_url + 'member_center_get.php', formData )
+                .then((response) => {
+                    const memberData = response.data;
+                    console.log(memberData);
+                    let gender_or = memberData.GENDER;
+                    if (gender_or === 'F') {
+                        this.gender = '女性'; // 與選項的 value 相匹配
+                    } else if (gender_or === 'M') {
+                        this.gender = '男性'; // 與選項的 value 相匹配
+                    } else {
+                        this.gender = '不公開'; // 與選項的 value 相匹配
+                    }
+
+                    this.name = memberData.USERNAME;
+                    this.nickname = memberData.NICKNAME;
+                    this.phone = memberData.PHONE;
+                    this.birthday = memberData.BIRTHDAY;
+                    this.gender_or = gender_or;
+                    this.selectedImage = memberData.MEMBER_PHOTO;
+;
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+            },
+            showEditForm() {
+                this.showForm = true;
+            },
+            validateName(){
+                this.nameError = '';
+                if (!this.name) {
+                    this.nameError = '請填寫姓名';
+                } else if (this.name.length < 3) {
+                    this.nameError = '姓名長度不能小於3個字';
+                }
+            },
+            validatePhone(){
+                this.phoneError = '';
+                if (!this.phone) {
+                    this.phoneError = '請填寫電話號碼';
+                } else if (!this.isValidPhone(this.phone)) {
+                    this.phoneError = '請輸入有效的電話號碼';
+                }
+            },
+            isValidPhone(phone) {
+            // 驗證電話號碼格式
+            const phoneRegex = /^09\d{8}$/;
+            return phoneRegex.test(phone);
+            },
+            validateNickname(){
+                this.nicknameError = '';
+                if (!this.nickname) {
+                    this.nicknameError = '請填寫暱稱';
+                }else if (this.nickname.length < 3) {
+                    this.nicknameError = '暱稱長度不能小於3個字';
+                }
+            },
+            showEditForm() {
+                if (this.nameError || this.nicknameError || this.phoneError) {
+                    return;
+                } else {
+                    const formData = new FormData();
+                    formData.append('name', this.name);
+                    formData.append('nickname', this.nickname);
+                    formData.append('phone', this.phone);
+                    formData.append('gender', this.gender_or);
+                    formData.append('email', this.email);
+                    
+                    if (this.imageFile) {
+                        formData.append('image', this.imageFile);
+                        formData.append('image_name', this.imageFile.name);
+                    }
+                    
+                    axios
+                        .post(php_url + 'member_center_edit.php', formData, {
+                            headers: { 'Content-Type': 'multipart/form-data' },
+                        })
+                        .then(response => {
+                            console.log('更改成功');
+                            window.location.href = 'member_center.html';
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                }
+            }}       
+        });
+        </script>
+
+<script>
+    const game_library = new Vue({
+      el: '#game_library',
+      data: {
+        games: [], // 游戏数据从PHP传递过来
+        showReview: {}, // 控制是否显示新增評論表单
+        reviewRating: {}, // 評分，根据游戏ID维护
+        reviewContent: {}, // 評論內容，根据游戏ID维护
+        achievements_max: 30,
+        lineBoxWidth: '0%',
+        member_ID: '',
+      },
+      mounted() {
+            this.showGameLibiary();
+      },
+      methods: {
+        async showGameLibiary() {
+            this.games = [];
+            try {
+            const response = await axios.post(php_url + 'login_status.php');
+            this.member_ID = response.data.member_ID;
+            const formData = new FormData();
+            formData.append('member_ID', this.member_ID);
+            const response2 = await axios.post(php_url + 'getGameLibrary_2.php', formData);
+            const games = response2.data;
+
+            for (const item of games) {
+                const gameId = item.GAME_ID;
+                const formData = new FormData();
+                formData.append('member_ID', this.member_ID);
+                formData.append('gameId', gameId);
+                const response3 = await axios.post(php_url + 'member_check_game.php', formData);
+
+                if (response3.data.match === false) {
+                item.addComment = '新增評論';
+                } else {
+                item.addComment = '';
+                }
+
+                let achievement_num = item.ACHIEVEMENT;
+                const game = {
+                id: item.GAME_ID,
+                imageUrl: item.GAME_COVER,
+                name: item.GAME_NAME,
+                playTime: item.GAME_TIME,
+                lastPlayDate: item.LAST_PLAYED,
+                achievement_num: item.ACHIEVEMENT,
+                achievements: achievement_num + ' / ' + this.achievements_max,
+                addComment: item.addComment,
+                };
+                game.lineBoxWidth = this.achievementsWidth(game);
+                this.games.push(game);
+            }
+            } catch (error) {
+            console.error(error);
+            }
+        },
+            startGame(game) {
+                // 随机更改游戏时长、上次游玩时间和成就数量
+                this.$set(game, 'playTime', Math.floor(Math.random() * 100)); // 使用随机数生成游戏时长
+                const currentDateTime = new Date().toISOString();
+                const [date, time] = currentDateTime.split('T');
+                
+                this.$set(game, 'lastPlayDate', `${date} ${time.slice(0, 8)}`); // 将日期和时间部分分别保存到游戏对象的属性中
+                const achievement_num = (Math.floor(Math.random() * (this.achievements_max - 1)) + 1);
+                this.$set(game, 'achievement_num', achievement_num);
+                this.$set(game, 'achievements', `${achievement_num} / ${this.achievements_max}`);
+                
+                // console.log(game.achievement_num);
+                // 更新进度条的宽度
+                game.lineBoxWidth = this.achievementsWidth(game);
+                // 更新数据库中的游戏数据
+                const formData = new FormData();
+                formData.append("member_ID", this.member_ID);
+                formData.append("gameId", game.id);
+                formData.append("playTime", game.playTime);
+                formData.append("lastPlayDate", game.lastPlayDate);
+                formData.append("achievement_num", game.achievement_num);
+                
+                axios.post(php_url + 'update_game_data.php', formData)
+                    .then(response => {
+                    // 根据服务器返回的结果进行处理
+                    console.log(response.data);
+                    })
+                    .catch(error => {
+                    console.error(error);
+                    });
+                },
+                achievementsWidth(game) {
+                    return `${(game.achievement_num / this.achievements_max) * 100 }%`;
+                },
+                showReviewForm(gameId) {
+                // 根据游戏ID显示/隐藏新增評論表单
+                this.$set(this.showReview, gameId, !this.showReview[gameId]);
+                this.$set(this.reviewRating, gameId, 0);
+                this.$set(this.reviewContent, gameId, '');
+                },
+                setRating(rating, gameId) {
+                // 设置評分
+                this.$set(this.reviewRating, gameId, rating);
+                console.log(this.rating);
+                },
+                submitReview(gameId) {
+                // 提交評論
+                const rating = this.reviewRating[gameId];
+                const content = this.reviewContent[gameId];
+
+                console.log(rating, content, gameId);
+            
+                const formData = new FormData();
+                formData.append("rating", rating);
+                formData.append("content", content);
+                formData.append("gameId", gameId);
+                formData.append("member_ID", this.member_ID);
+            
+                axios.post(php_url + 'member_add_commentList.php', formData)
+                    .then(response => {
+                    // 根据服务器返回的结果进行处理
+                    console.log(response.data);
+                    alert('新增成功');
+                    
+                    this.$set(this.showReview, gameId, false);
+                    this.showGameLibiary();
+                    //   window.location.href = 'member_center.html';
+                    })
+                    .catch(error => {
+                    console.error(error);
+                    });
+                }
+            }
+            });
+        </script>
+
+        <script>
+            const coupons = new Vue({
+                el: '#coupon_box',
+                data: {
+                    couponCode: '',
+                    member_ID : '',
+                    coupon_hint: '',
+                    coupons: [
+
+                    ]
+                },
+                mounted() {
+                    this.couponsFunction();
+                },
+                methods: {
+                    couponsFunction(){
+                        axios.defaults.withCredentials = true;
+                        axios.post(php_url + 'login_status.php')
+                        .then((response) => {
+                            this.member_ID = response.data.member_ID;
+                            const formData = new FormData();
+                            formData.append("member_ID" , this.member_ID);
+
+                            axios.post( php_url + 'member_center_coupons.php', formData)
+                            .then(response => {
+                                this.coupons = response.data;
+                                if(this.coupons.length <= 0){
+                                    this.coupon_hint = '請新增優惠券';
+                                }else{
+                                this.coupons = response.data.map(item => {
+                                let discount = '';
+                                let discounts = '';
+                                let type = '';
+                                if(parseFloat(item.COUPON_DISCOUNTS) < 1){
+                                    discounts = (item.COUPON_DISCOUNTS * 10).toFixed(0) + '折';
+                                }else{
+                                    discount = parseInt(item.COUPON_DISCOUNT) + '元';
+                                    type = '折扣券';
+                                    discounts = '';
+                                }
+                                
+                                return {
+                                    id: item.id,
+                                    title: item.COUPON_NAME,
+                                    validity: item.COUPON_END,
+                                    rules: item.COUPON_DETAIL,
+                                    discount: `${discount}`,
+                                    discounts: `${discounts}`,
+                                    type: `${type}`
+                                };
+                                });
+                                this.coupons.reverse();
+                        }})
+                            .catch(error => {
+                                console.log(error);
+                                });
+                                })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                    },
+                    applyCoupon(){
+                        const formData = new FormData();
+                        formData.append("couponCode" , this.couponCode);
+                        formData.append("member_ID" , this.member_ID);
+
+                        axios.post( php_url + 'member_coupons_add.php', formData)
+                        .then(response => {
+                            if(response.data.success === true){
+                            this.couponsFunction();
+                            alert('新增成功');
+                            
+                            }else{
+                                alert('此代碼無效，請輸入正確優惠券代碼');
+                            }
+                        })
+
+                        .catch(error => {
+                            
+                        });
+                        this.couponCode = '';
+                    }
+                }
+            });
+        </script>
+        <script>
+            const order = new Vue({
+              el: '#order',
+          
+              data: {
+                orders: [],
+                member_ID: '',
+                activeOrder: null,
+              },
+          
+              mounted() {
+                axios.defaults.withCredentials = true;
+                axios.post(php_url + 'login_status.php')
+                  .then((response) => {
+                    this.member_ID = response.data.member_ID;
+          
+                    const formData = new FormData();
+                    formData.append("member_ID", this.member_ID);
+          
+                    axios.post(php_url + 'getOrderList.php', formData)
+                      .then(response => {
+                        let order_length = response.data.length;
+          
+                        if (order_length > 0) {
+                          if (response.data && response.data.length > 0) {
+                            this.orders = response.data.map(item => {
+                              let items = item.items.map(detail => {
+                                let discounts = detail.discount !== '0.00' ? "-" + Math.round((1 - detail.discount) * 100) + '%' : 'None';
+                                let price = detail.discount !== '0.00' ? Math.floor(detail.price * detail.discount) : detail.price;
+                                let originalPrice = detail.discount !== '0.00' ? "$" + detail.price : '';
+          
+                                return {
+                                  itemId: detail.itemId,
+                                  name: detail.name,
+                                  image: detail.image,
+                                  discount: discounts,
+                                  price: price,
+                                  originalPrice: originalPrice,
+                                  showDetails: false, // 添加showDetails属性并初始化为false
+                                };
+                              });
+          
+                              let coupon = item.coupon !== null ? item.coupon : '未使用優惠券';
+          
+                              return {
+                                orderId: item.orderId,
+                                purchaseDate: item.purchaseDate,
+                                purchaseAmount: item.purchaseAmount,
+                                orderStatus: '已完成',
+                                items: items,
+                                coupon: coupon,
+                                discount: item.discount + '元',
+                                totalAmount: item.totalAmount + '元',
+                                showDetails: false,
+                              };
+                            });
+                          }
+                        }
+          
+                        this.activeOrder = this.orders[0];
+                        this.activeOrder.showDetails = true;
+                      })
+                      .catch(error => {
+                        console.error(error);
+                      });
+                  })
+                  .catch(error => {
+                    console.log(error);
+                  });
+              },
+          
+              methods: {
+                toggleOrderDetails(index) {
+                  this.orders.forEach((order, i) => {
+                    if (i === index) {
+                      order.showDetails = !order.showDetails;
+                    } else {
+                      order.showDetails = false;
+                    }
+                  });
+                },
+              }
+            });
+          </script>
+          
+
+    <script>
+        let nav = $(".select li");
+        let revise_box = $('.revise_box');
+        let section = document.querySelectorAll("section.right");
+        nav.on('click', function(){
+            let index = 0;
+            
+            if (!$(this).hasClass('-on')) {
+                section = $("section.right");
+                nav.removeClass('-on');
+                $(this).toggleClass('-on');
+                index = $(this).index();
+                revise_box.removeClass('-oon');
+                section.removeClass('-oon');
+                section[index].classList.add("-oon");
+            }
+        });
+    </script>
+
+    <!-- 會員資料修改 -->
+    <script>
+        $(document).ready(function() {
+            let revise = $('.revise');
+            let save = $('.save');
+            let revise_box = $('.revise_box');
+            let section = document.querySelectorAll("section.right");
+                revise.on('click', function() {
+                    section.forEach(function(element) {
+                        element.classList.remove('-oon');
+                    });
+                    revise_box.addClass('-oon');
+                });
+                save.on('click',function(){
+                    revise_box.removeClass('-oon');
+                    section[0].classList.add("-oon");
+                });
+        });
+    </script>
+
+    <!-- 購買清單的展開 -->
+    <!-- <script>
+        $('.open_btn').click(function() {
+            $('.detail_order').slideToggle();
+        });
+    </script> -->
+
+    <!-- RWD的NAV -->
+    <script>
+        function checkBreakpoint() {
+        // 使用媒體查詢檢查視窗寬度是否小於或等於414px
+        var mediaQuery = window.matchMedia("(max-width: 414px)");
+        let section = document.querySelectorAll("section.right");
+        let nav = document.querySelectorAll(".select li");
+        let nav_li = $(".select li");
+        let nav_box = $(".select");
+        let back = $(".back");
+            // 檢查媒體查詢的結果
+            if (mediaQuery.matches) {
+                section.forEach(function(element) {
+                    element.classList.remove('-oon');
+                });
+                nav.forEach(function(element) {
+                    element.classList.remove('-on');
+                });
+
+                nav_li.on('click', function(){
+                    nav_box.css('display','none');
+                    back.css('display','block');
+                });
+
+                back.on('click', function(){
+                    back.css('display','none');
+                    nav_box.css('display','block');
+                    section.forEach(function(element) {
+                    element.classList.remove('-oon');
+                     });
+                    nav.forEach(function(element) {
+                    element.classList.remove('-on');
+                });
+                });
+            }
+            
+        }
+
+        // 監聽視窗大小變化事件
+        window.addEventListener("resize", checkBreakpoint);
+
+        // 在頁面載入時執行一次檢查
+        checkBreakpoint();
+    </script>
+</body>
+
+</html>

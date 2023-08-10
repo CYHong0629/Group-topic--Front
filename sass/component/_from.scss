@@ -1,0 +1,64 @@
+label {
+    color: $white;
+    display: block;
+    font-size: $p;
+    margin-bottom: 10px;
+    letter-spacing: 0.5rem;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Inter', sans-serif, 'Noto Sans TC', sans-serif;
+    font-size: $p;
+    padding: 10px;
+    background-color: rgba(13, 13, 13, 0.7);
+    border: 1px solid $white;
+    border-radius: 5px;
+    color: $white;
+    margin-bottom: 20px;
+    &:focus{
+        border: 1px solid $orange;
+    }
+}
+
+button.btn {
+    display: block;
+    font-size: $h4;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+}
+
+body.B {
+    form {
+        width: 80%;
+    }
+
+    label {
+        color: $backend_font;
+        display: block;
+        font-size: $h4;
+        margin-bottom: 10px;
+    }
+
+    input {
+        font-size: $h2;
+        padding: 5px;
+        background-color: $white;
+        border: 1px solid black;
+        color: $backend_font;
+    }
+
+    button.btn {
+        font-size: $h2;
+    }
+
+    i {
+        color: $red;
+        font-size: $h2;
+    }
+}

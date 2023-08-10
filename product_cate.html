@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstem | 商品分類頁</title>
+    @@include('./layout/style.html')
+    <!-- 以下可以放自己的link -->
+</head>
+
+<body>
+    <!-- header -->
+    @@include('./layout/header.html')
+
+    <main class="product_cate" id="product_cate" v-if="category">
+
+        <!-- 類別標題 -->
+        <div class="banner col-12">
+            <div class="banner_main">
+                <img class="game_cate" :src="category.img" alt="">
+                <h1>{{ category.name }}</h1>
+            </div>
+        </div>
+
+        <!-- 麵包屑 -->
+        <nav id="cate_breadcrumb">
+            <a href="./index.html">首頁</a><i class="bi bi-chevron-right a_after"></i>
+            <a href="./product.html">商品</a><i class="bi bi-chevron-right a_after"></i>
+            <a href="#">{{ category.name }}</a>
+        </nav>
+
+        <!-- 主要區域 -->
+        <section class="cate_main col-12">
+
+            <!-- 側邊欄 -->
+            <product-sidebar @filter-list="getFilterGoodList"></product-sidebar>
+
+
+            <!-- 商品列表 -->
+            <div class="products col-9">
+
+                <!-- 商品排序下拉選單 -->
+                <div class="add_filter">
+                    <div class="sidebar_btn">
+                        <span>篩選器</span>
+                        <i class="bi bi-filter"></i>
+                    </div>
+                    <div class="product_order">
+                        <h3>排序：</h3>
+                        <div class="order_btn" @click="toggleOptions" :class="{'active': isOpen}">
+                            <span class="option_text">{{ selectedOption }}</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <ul class="order_options" v-show="isOpen === true">
+                            <li class="option" v-for="option in options" :key="option.text"
+                                @click="selectOption(option);sortedGoods()">
+                                <span class="option_text">{{ option.text }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 商品陳列區 -->
+                <div class="product_goods" id="product-list">
+                    <product-list :goods="displayedGoods()"></product-list>
+                </div>
+
+                <!-- 分頁器 -->
+                <paginator :total-pages="totalPages()" :current-page="currentPage" @page-change="goToPage"
+                        @previous-page="previousPage" @next-page="nextPage">
+                </paginator>
+
+            </div>
+        </section>
+
+    </main>
+    <!-- footer -->
+    @@include('./layout/footer.html')
+    <!-- javascript -->
+    @@include('./layout/js.html')
+    <!-- 以下可以放自己的js -->
+
+    <script type="module">
+
+        // 引入子元件
+        import ProductList from "./js/ProductList.js";
+        import Paginator from "./js/Paginator.js";
+        import ProductSidebar from "./js/ProductSidebar.js";
+
+        // 主要內容渲染
+        const app = Vue.createApp({
+            data() {
+                return {
+                    //商品排序
+                    isOpen: false,
+                    selectedOption: '選擇排序方式',
+                    selectedOptionValue: '',
+                    options: [
+                        { text: '最受歡迎', value: 'more_popular' },
+                        { text: '日期由新到舊', value: 'new_to_old' },
+                        { text: '日期由舊到新', value: 'old_to_new' },
+                        { text: '價格由高到低', value: 'high_to_low' },
+                        { text: '價格由低到高', value: 'low_to_high' }
+                    ],
+
+                    //商品區
+                    currentPage: 1, // 當前頁碼
+                    itemsPerPage: 8, // 每頁顯示商品數量
+                    filterGoodsList: [],
+                    goodListFromDB: [],
+                    hotCategories: [                        
+                        {
+                            id: 1,
+                            name: '冒險',
+                            img: './pic/img/gameTypeIcon/adventure.svg'
+                        },                        
+                        {
+                            id: 2,
+                            name: '角色扮演',
+                            img: './pic/img/gameTypeIcon/role_play.svg'
+                        },
+                        {
+                            id: 3,
+                            name: '休閒',
+                            img: './pic/img/gameTypeIcon/casual.svg'
+                        },
+                        {
+                            id: 4,
+                            name: '解謎',
+                            img: './pic/img/gameTypeIcon/puzzle.svg'
+                        },
+                        {
+                            id: 5,
+                            name: '動作',
+                            img: './pic/img/gameTypeIcon/personal.svg'
+                        },                    
+                        {
+                            id: 6,
+                            name: '策略',
+                            img: './pic/img/gameTypeIcon/shot.svg'
+                        },
+                        {
+                            id: 7,
+                            name: '模擬',
+                            img: './pic/img/gameTypeIcon/science_fiction.svg'
+                        },
+                        {
+                            id: 8,
+                            name: '運動',
+                            img: './pic/img/gameTypeIcon/coorperate.svg'
+                        },
+
+                    ]
+                };
+            },
+            created() {
+                //取得網址上的ID
+                let id = new URL(location.href).searchParams.get('cateId');
+
+                axios.get(php_url + `product_sidebar_function.php?cateId=${id}`)
+                    .then((response => {
+                        this.goodListFromDB = response.data;
+                        // 判斷是否有登入，撈取登入的資料
+                        axios.defaults.withCredentials = true;
+                        axios.post(php_url + 'login_status.php')
+                            .then((response) => {
+                                let isLogin = response.data.isLogin;
+                                if(isLogin){
+                                    let id = response.data.member_ID;
+                                    axios.get(php_url + `member_wishlist.php?id=${id}`)
+                                    .then((response)=>{
+                                        let collectedGoodsList = response.data;
+                                        for(let goodList of this.goodListFromDB){
+                                            for(let collectedGood of collectedGoodsList){
+                                                if(goodList.GAME_ID == collectedGood.GAME_ID){
+                                                    goodList.clicked = true;
+                                                    goodList.hovered = true;
+                                                }                                                    
+                                            }                                                                             
+                                        }
+                                    })
+                                }                             
+                            })
+                        this.goodListFromDB_copy = response.data;
+                })),
+                this.category = this.hotCategories.find(category => category.id.toString() === id);
+
+            },
+            methods: {
+                //商品排序選擇功能
+                sortedGoods() {
+                    switch (this.selectedOptionValue) {
+                        case 'more_popular'://最受歡迎
+                            this.goodListFromDB = this.goodListFromDB.slice().sort((a, b) => b.PURCHASED - a.PURCHASED);
+                            break;
+                        case 'new_to_old'://新到舊
+                            this.goodListFromDB = this.goodListFromDB.slice().sort((a, b) => new Date(b.RELEASE_DATE) - new Date(a.RELEASE_DATE));
+                            break;
+                        case 'old_to_new'://舊到新                                              
+                            this.goodListFromDB = this.goodListFromDB.slice().sort((a, b) => new Date(a.RELEASE_DATE) - new Date(b.RELEASE_DATE));
+                            break;
+                        case 'high_to_low'://價格高到低           
+                            this.goodListFromDB = this.goodListFromDB.slice().sort((a, b) => b.ORIGINAL_PRICE - a.ORIGINAL_PRICE);
+                            break;
+                        case 'low_to_high'://價格低到高
+                            this.goodListFromDB = this.goodListFromDB.slice().sort((a, b) => a.ORIGINAL_PRICE - b.ORIGINAL_PRICE);
+                            break;
+                        default:
+                            return this.goodslist;
+                    }
+                },
+
+                // 下拉選單功能
+                toggleOptions() {
+                    this.isOpen = !this.isOpen;
+                },
+                selectOption(option) {
+                    this.selectedOption = option.text;
+                    this.selectedOptionValue = option.value;
+                    this.isOpen = false;
+                },
+
+                //頁碼切換
+                goToPage(page) {
+                    if (page >= 1 && page <= this.totalPages()) {
+                        this.currentPage = page; // 跳轉到指定頁碼
+                    }
+                    this.$nextTick(() => {
+                        const productList = document.getElementById('product-list');
+                        if (productList) {
+                        window.scrollTo({
+                            top: productList.offsetTop,
+                            behavior: 'smooth', // 使用平滑滾動效果
+                        });
+                        }
+                    });
+                },
+                // 上一頁
+                previousPage() {
+                    if (this.currentPage > 1) {
+                        this.currentPage--; 
+                    }
+                },
+                // 下一頁
+                nextPage() {
+                    if (this.currentPage < this.totalPages()) {
+                        this.currentPage++;
+                    }
+                },
+                // 總頁數
+                totalPages() {
+                    return Math.ceil(this.goodListFromDB.length / this.itemsPerPage); // 總頁數
+                },
+                // 商品呈現
+                displayedGoods() {
+                    const start = (this.currentPage - 1) * this.itemsPerPage;
+                    const end = start + this.itemsPerPage;
+                    return this.goodListFromDB.slice(start, end);
+                },
+                getFilterGoodList(filterlist) {
+                    let id = new URL(location.href).searchParams.get('cateId');
+                    const url_filter = php_url + `product_sidebar_function.php?cateId=${id}`;
+                    axios.get(url_filter, {                     
+                        params:{
+                            filterlist: filterlist
+                        } 
+                    }).then((response) => {
+                        this.currentPage = 1;
+                        this.filterGoodsList = response.data;
+                        // 判斷是否有登入，撈取登入的資料
+                        axios.defaults.withCredentials = true;
+                        axios.post(php_url + 'login_status.php')
+                            .then((response) => {
+                                let isLogin = response.data.isLogin;
+                                if(isLogin){
+                                    let id = response.data.member_ID;
+                                    axios.get(php_url + `member_wishlist.php?id=${id}`)
+                                    .then((response)=>{
+                                        let collectedGoodsList = response.data;
+                                        for(let goodList of this.goodListFromDB){
+                                            for(let collectedGood of collectedGoodsList){
+                                                if(goodList.GAME_ID == collectedGood.GAME_ID){
+                                                    goodList.clicked = true;
+                                                    goodList.hovered = true;
+                                                }                                                    
+                                            }                                                                             
+                                        }
+                                    })
+                                }                             
+                            })
+
+                        if(filterlist.tag_list.length == 0){
+                            this.goodListFromDB = this.goodListFromDB_copy;
+                        }else{
+                            this.goodListFromDB = this.filterGoodsList;
+                        }
+                    });
+                    
+                },
+                
+            },
+            //子元件
+            components: {
+                ProductList,
+                Paginator,
+                ProductSidebar,
+            },
+        });
+        app.mount('#product_cate'); // 將Vue應用程序掛載到具有id="app"的元素上   
+
+        //手機板篩選器設定
+        $('.sidebar_btn').click(function () {
+            $('.product_sidebar').css("left", "0");
+        })
+        $('.apply_choose').click(function () {
+            $('.product_sidebar').css("left", "-414px");
+        })
+
+        
+    </script>
+</body>
+
+</html>

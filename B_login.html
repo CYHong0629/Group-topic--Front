@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstem | 後台登入</title>
+    @@include('./layout/style.html')
+</head>
+
+<body class="B BF">
+    <!-- header -->
+    <header>
+        <h4 class="B-title">Brainstem - 管理者後台</h4>
+    </header>
+
+    <main class="B_login">
+        <div class="user col-5">
+            <img src="./pic/img/LOGO/Group564.png">
+            <h4>管理者登入</h4>
+            <form action="" method="">
+                <input type="text" id="username" placeholder="username" value="點登入">
+                <input type="text" id="password" placeholder="password">
+                <button type="submit" class="btn"  onclick="B_member(event)">登入</button>
+            </form>
+            <a href="">忘記密碼</a>
+        </div>
+    </main>
+    @@include('./layout/js.html')
+        <script>
+        function B_member(e) {
+            e.preventDefault();
+            window.location.href = "./B_member.html"
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,437 @@
+.log_title{
+  text-align: center;
+  // display: inline-block;
+  .logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    img{
+      transform: scale(.9);
+      width: 100%;
+      height: 100%;
+    }
+  }
+  h2.margin{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+}
+.login {
+   height: calc(100vh - 109px);
+  form{
+    width: 80%;
+  }
+  
+  .margin {
+    margin: 10px 0;
+  }
+  
+  .login_block {
+    // position: fixed;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    @include flex-container(column, nowrap, space-around, center);
+    padding: 10px 0;
+    margin: 30px auto;
+    // border: 1px solid red;
+    background: rgba(43, 43, 43, 0.35);
+    backdrop-filter: blur(15px);
+    border-radius: 5px
+  }
+  .flex {
+    @include flex-container();
+    border-bottom: 1px solid $white;
+    padding-bottom: 10px;
+    width: 80%;
+        a:hover{
+            text-decoration: underline;
+        }
+  }
+  .register a {
+    color: $green;
+  }
+  .quick_login {
+    width: 80%;
+    h3 {
+      text-align: center;
+      width: 100%;
+      border: 1px solid #ff6300;
+      padding: 8px 0;
+      border-radius: 5px;
+      font-size: $p;
+            &:hover{
+                background-color: #ff62009c;
+            }
+    }
+        
+    .FB_login {
+      margin-bottom: 10px;
+    }
+  }
+  .suceesfully{
+    width: 30vw;
+    height: 50vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    background: rgba(36, 36, 36, 0.9);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    @include flex-container(column, nowrap, space-around, center);
+    display: none;  
+      i{
+        display: block;
+        padding: 30px;
+        border: 3px solid $green;
+        border-radius: 50%;
+        color: $green;
+        font-size: 4rem;
+      }
+  }
+  @include breakpoint-1280 {
+    .col-4{
+      width: 60%;
+    }
+  }
+  @include breakpoint-860 {
+    .col-4{
+      width: 80%;
+    }
+  }
+  @include breakpoint-414 {
+    .suceesfully{
+      width: 90vw;
+    }
+  }
+  
+  
+}
+
+.forget{
+  .login_block{
+    @include flex-container(column, nowrap, flex-start, center);
+    height: 580px;
+    h2{
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+  .verification_code_section{
+    p{
+      color: #ff6300;
+      text-align: center;
+      margin-bottom: 20px;
+      i{
+        color: #ff6300;
+        font-size: $p;
+      }
+    }
+  }
+  .error{
+    background-color: $orange;
+    padding: 8px;
+    position: relative;
+    display: inline-block;
+    border-radius: 5px;
+    &::after{
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: 20px;
+      transform: translateX(-50%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid $orange;
+    }
+  }
+  .suceesfully{
+    width: 30vw;
+    height: 50vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    background: rgba(36, 36, 36, 0.9);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    @include flex-container(column, nowrap, space-around, center);
+    display: none;  
+      i{
+        display: block;
+        padding: 30px;
+        border: 3px solid $green;
+        border-radius: 50%;
+        color: $green;
+        font-size: 4rem;
+      }
+  }
+  @include breakpoint-1280 {
+    .col-4{
+      width: 60%;
+    }
+  }
+  @include breakpoint-860 {
+    .col-4{
+      width: 80%;
+    }
+  }
+  @include breakpoint-414 {
+    .suceesfully{
+      width: 90vw;
+    }
+    .col-4{
+      width: 100%;
+    }
+  }
+}
+
+.register{
+ 
+  .margin {
+    margin: 20px 0;
+  }
+  .register_block{
+    margin: 100px auto;
+    box-sizing: border-box;
+    background: rgba(43, 43, 43, 0.35);
+    backdrop-filter: blur(15px);
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  form{
+    @include flex-container(row, wrap, space-around, flex-start);
+    width: 100%;
+    // margin: 0 auto;
+    position: relative;
+     
+    .col-7{
+      margin-right: 0px;
+    }
+    &::after{
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1px;
+      height: 85%;
+      background-color: $price_original;
+    }
+    button{
+      flex-basis: 50%;
+      margin: 20px 0 ;
+    }
+  }
+  .left, .right{
+    width: 40%;
+  }
+  .error{
+    background-color: $orange;
+    padding: 8px;
+    position: relative;
+    display: inline-block;
+    border-radius: 5px;
+    &::after{
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: 20px;
+      transform: translateX(-50%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid $orange;
+    }
+  }
+  
+  .gender{
+    width: 100%;
+    @include flex-container(row, nowrap, space-between, center);
+    label{
+      vertical-align: middle;
+    }
+    input{
+      vertical-align: middle;
+    }
+    /* 設置 radio 的顏色 */
+    input[type="radio"] {
+      appearance: none;
+      width: 5px; /* 設置 radio 寬度 */
+      height: 5px; /* 設置 radio 高度 */
+      border-radius: 50%; /* 設置圓形 */
+      border: 1px solid $white; /* 設置邊框 */
+      outline: none; /* 移除聚焦時的邊框 */
+      transition: border-color 0.3s ease; /* 添加過渡效果 */
+      margin: 0;
+      margin-right: 10px; /* 設置間距 */
+      position: relative;
+      &:focus{
+        border: 1px solid $orange;
+      }
+    }
+
+    /* 設置選中時的顏色 */
+    input[type="radio"]:checked {
+      //  background-color: #007aff;
+    }
+
+    /* 隱藏原始的 radio 選擇圓點 */
+    input[type="radio"]::before {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 設置 radio 選擇圓點的顏色 */
+    input[type="radio"]:checked::before {
+      background-color: #ff6300;
+    }
+  }
+
+  
+    p{
+      margin-bottom: 10px;
+    }
+    .birth{
+      input{
+      margin-bottom: 10px;
+    }
+    }
+    
+
+  #dob { /* jsut to demonstrate that some styles will be copied from the input to the dropdowns*/
+    // font: 1.2em sans-serif;
+    // padding: 0.5em 1em;
+  }
+  
+  /*
+  Unfortunately, we have to fake placeholders as they are not supported on select elements
+  */
+  input::placeholder,
+  select.show-placeholder,
+  select option:first-child {
+      // color: #ffffff;
+  }
+  
+  select.show-placeholder option {
+      color: #ffffff;
+  }
+  
+  /* Display the dropdowns next to each other */
+  #date-select-wrapper {
+    display: flex;
+    max-width: 100%; /* just for this demo */
+    overflow: hidden;
+    
+  }
+  
+  #date-select-wrapper > * {
+      flex-grow: 1;
+      width: auto;
+      margin: 0;
+      border: 1px solid $white;
+      &:focus {
+        border: 1px solid $orange;
+      }
+      &:first-child{
+        border-radius: 3px 0 0 3px;
+      }
+      &:last-child{
+        border-radius: 0 3px 3px 0;
+      }
+  }
+  element.style{
+    color: $white;
+  }
+  select{
+    color:$white;
+    padding: 5px;
+  }
+  .datepicker-icon {
+    color: #fff;
+}
+.suceesfully{
+  width: 30vw;
+  height: 50vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  background: rgba(36, 36, 36, 0.9);
+    backdrop-filter: blur(5px);
+  border-radius: 5px;
+  @include flex-container(column, nowrap, space-around, center);
+  display: none;  
+    i{
+      display: block;
+      padding: 30px;
+      border: 3px solid $green;
+      border-radius: 50%;
+      color: $green;
+      font-size: 4rem;
+    }
+  
+}
+
+@include breakpoint-1280 {
+  
+  .col-10{
+    width: 100%;
+  }
+  
+  .register_block{
+    margin: 40px auto;
+  }
+}
+
+@include breakpoint-860 {
+  form{
+    @include flex-container(column, wrap, flex-start, flex-start);
+    &::after{
+     content: '';
+     display: none;
+    }
+    .left, .right{
+     width: 100%;
+   }
+   .gender{
+     margin-bottom: 20px;
+   }
+  .col-10{
+    width: 100%;
+  }
+  
+}
+}
+
+@include breakpoint-414 {
+  form{
+     @include flex-container(column, wrap, flex-start, flex-start);
+     &::after{
+      content: '';
+      display: none;
+     }
+     .left, .right{
+      width: 100%;
+    }
+    .gender{
+      margin-bottom: 20px;
+    }
+  }
+  .suceesfully{
+    width: 90vw;
+  }
+}
+
+}

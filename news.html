@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstem | 新聞</title>
+    @@include('./layout/style.html')
+    <!-- 以下可以放自己的link -->
+</head>
+
+<body>
+    <!-- header -->
+    @@include('./layout/header.html')
+    <main class="news">
+        <!-- 請從這邊開始寫 -->
+
+        <div class="header-news">
+            <h1 class="title-news">新 聞</h1>
+        </div>
+
+        <form class="search_news_out">
+            <input type="text" name="search_news" placeholder="新聞搜尋" />
+        </form>
+
+        <!-- 精選 -->
+        <div class="featured">
+            <h3 class="featured_title">精選新聞 〉</h3>
+            <ul class="featured_ul">
+                <li class="featured_li">
+                    <a href="./news_article.html" class="featured_link">
+                        <img src="./pic/img/news/bbb.jpg" class="featured_img">
+                        <div class="featured_top">
+                            <span class="featured_date">2023/05/28</span>
+                            <span class="featured_views">288
+                                <i class="bi bi-hand-thumbs-up"></i>
+                                <i class="bi bi-share-fill share_btn"></i>
+                            </span>
+                        </div>
+                        <div class="title">
+                            <h3>懸疑冒險遊戲《春逝百年抄》手機版今推出 原聲音樂同步上架串流平台
+                            </h3>
+                        </div>
+                        <div class="news_text">
+                            <p>《春逝百年抄 The Centennial Case》為圍繞著永恆生命展開的「新本格」派懸疑冒險遊戲，玩家將挑戰解開橫跨一百年的殺人案之謎，以邏輯解開百年的謎團。
+                            </p>
+                        </div>
+                    </a>
+                </li>
+                <li class="featured_li">
+                    <a href="./news_article.html" class="featured_link">
+                        <img src="./pic/img/news/ccc.jpg" class="featured_img">
+                        <div class="featured_top">
+                            <span class="featured_date">2023/05/26</span>
+                            <span class="featured_views">326
+                                <i class="bi bi-hand-thumbs-up"></i>
+                                <i class="bi bi-share-fill share_btn"></i></span>
+                        </div>
+                        <div class="title">
+                            <h3>《風起三國之亂世逐鹿》事前預約正式開啟 挑戰系統八大模式全公開
+                            </h3>
+                        </div>
+                        <div class="news_text">
+                            <p>由阿爾發遊戲代理，全新 3D 擬真戰場兵將策略遊戲《風起三國之亂世逐鹿》，官方於今日宣佈事前預約App Store、Google Play 雙平台商店預約正式啟動。
+                            </p>
+                        </div>
+                    </a>
+                </li>
+                <li class="featured_li">
+                    <a href="./news_article.html" class="featured_link">
+                        <img src="./pic/img/news/aaa.jpg" class="featured_img">
+                        <div class="featured_top">
+                            <span class="featured_date">2023/05/30</span>
+                            <span class="featured_views">222
+                                <i class="bi bi-hand-thumbs-up"></i>
+                                <i class="bi bi-share-fill share_btn"></i></span>
+                        </div>
+                        <div class="title">
+                            <h3>把聖休亞瑞當自己家！《暗黑破壞神 4》釋出新解析影片 團隊談客製化角色外觀及遊玩風格
+                            </h3>
+                        </div>
+                        <div class="news_text">
+                            <p>Blizzard 今（18）日公開《暗黑破壞神
+                                4》新遊戲深入解析影片，開發團隊成員針對遊戲設計核心之一「玩出自我」分享見解，並介紹多樣客製化遊玩風格及角色外觀的方式。
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- down -->
+        <div class="down">
+            <!-- 最近 -->
+            <div class="recent_news_out">
+                <h3 class="recent_news">最近新聞 〉</h3>
+                <ul class="recent_ul">
+                    <li>
+                        <a href="./news_article.html" class="recent_a">
+                            <img src="./pic/img/news/Rectangle_469.jpg">
+                            <div class="recent_section">
+                                <span class="recent_date">2023/06/23</span>
+                                <h2 class="recent_title">《Tchia》</h2>
+                                <p class="recent_content">
+                                    該作品自 2020
+                                    年公開後，至今已過了兩年多，官方今日釋出《Tchia》實機遊玩影片，透過旁白解說的方式，帶領玩家一探遊戲內容、系統。
+                                </p>
+                                <span class="recent_views">118
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                    <i class="bi bi-share-fill share_btn"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./news_article.html" class="recent_a">
+                            <img src="./pic/img/game/58/3.jpg">
+                            <div class="recent_section">
+                                <span class="recent_date">2023/06/15</span>
+                                <h2 class="recent_title">《艾爾登法環》</h2>
+                                <p class="recent_content">
+                                    FromSoftware宣布，全球累計出貨超過 2000 萬套的人氣動作角色扮演遊戲《艾爾登法環（Elden Ring）》，目前已經在開發首款
+                                    DLC「黃金樹之影（Shadow of the Erdtree）」。目前官方僅公布了該
+                                    DLC 的標題與一張概念美術圖，詳情尚待後續揭曉。 </p>
+                                <span class="recent_views">100
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                    <i class="bi bi-share-fill share_btn"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./news_article.html" class="recent_a">
+                            <img src="./pic/img/game/57/1.jpg">
+                            <div class="recent_section">
+                                <span class="recent_date">2023/06/03</span>
+                                <h2 class="recent_title">《Cyberpunk 2077》</h2>
+                                <p class="recent_content">
+                                    CD PROJEKT RED《電馭叛客 2077》，隨著遊戲歷經發售多時加上動畫作品《電馭叛客 2077 邊緣行者》大受歡迎，官方宣布遊戲在全球銷量已突破 2,000
+                                    萬，並且對所有支持遊戲的玩家表達感謝。 </p>
+                                <span class="recent_views">50
+                                    <i class="bi bi-hand-thumbs-up"></i>
+                                    <i class="bi bi-share-fill share_btn"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 側邊 -->
+            <div class="aside_news">
+                <h3 class="aside_news_title">熱門新聞 〉</h3>
+                <ul class="aside_ul">
+                    <li class="aside_li">
+                        <div class="aside_section">
+                            <h3 class="aside_number">1</h3>
+                            <a class="aside_title" href="./news_article.html">
+                                《艾爾登法環》
+                            </a>
+                        </div>
+                    </li>
+                    <li class="aside_li">
+                        <div class="aside_section">
+                            <h3 class="aside_number">2</h3>
+                            <a class="aside_title" href="./news_article.html">
+                                《Cyberpunk 2077 電馭叛客》
+                            </a>
+                        </div>
+                    </li>
+                    <li class="aside_li">
+                        <div class="aside_section">
+                            <h3 class="aside_number">3</h3>
+                            <a class="aside_title" href="./news_article.html">
+                                《Tchia》
+                            </a>
+                        </div>
+                    </li>
+                    <li class="aside_li">
+                        <div class="aside_section">
+                            <h3 class="aside_number">4</h3>
+                            <a class="aside_title" href="./news_article.html">
+                                《The Witcher 3: Wild Hunt》
+                            </a>
+                        </div>
+                    </li>
+                    <li class="aside_li">
+                        <div class="aside_section">
+                            <h3 class="aside_number">5</h3>
+                            <a class="aside_title" href="./news_article.html">
+                                《動畫製作物語 (Anime Studio Story)》
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <!-- footer -->
+    @@include('./layout/footer.html')
+    <!-- javascript -->
+    <!-- 以下可以放自己的js -->
+</body>
+
+</html>

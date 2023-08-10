@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstem | 會員資訊</title>
+    @@include('./layout/style.html')
+</head>
+
+<body class="B">
+    <!-- header -->
+    @@include('./layout/B_header.html')
+    <main class="B_member_info">
+
+        <!-- 左側選單列 -->
+        @@include('./layout/B_nav.html')
+
+        <!-- 右側 -->
+        <div class="right col-12">
+            <a href="./B_member.html">
+                <h6>回上一頁</h6>
+            </a>
+            <div class="right_main" id="B_member_info">
+                <form action="" method="" id="">
+                    <div class="B_button">
+                        <h4>會員資料</h4>
+                        <button class="btn" id="button" @click="toggleEditSave($event)">{{ editMode ? '保存' :
+                            '修改內容'}}</button>
+                    </div>
+                    <ul>
+                        <li>
+                            <h6>會員編號</h6>
+                            <h6>{{member.MEMBERSHIP_NUMBER}}</h6>
+                        </li>
+                        <li>
+                            <h6>會員帳號</h6>
+                            <h6>{{member.MEMBER_ACCOUNT}}</h6>
+                        </li>
+                        <li>
+                            <h6>會員姓名</h6>
+                            <h6>{{member.USERNAME}}</h6>
+                        </li>
+                        <li>
+                            <label for="name">
+                                <h6>使用者名稱</h6>
+                            </label>
+                            <h6 v-if="!editMode" id="content1">{{ member.NICKNAME }}</h6>
+                            <input v-else type="text" v-model="member.NICKNAME" placeholder="{{ member.NICKNAME }}">
+                        </li>
+                        <li class="B_grid_four">
+                            <label for="phone">
+                                <h6>電話號碼</h6>
+                            </label>
+                            <h6 v-if="!editMode" id="content2">{{ member.PHONE }}</h6>
+                            <input v-else type="text" v-model="member.PHONE" placeholder="{{member.PHONE}}">
+                            <!-- <h6>電話號碼是否驗證通過：是</h6>
+                            <button class="btn" onclick="">重新送驗證碼</button> -->
+                        </li>
+                        <li>
+                            <h6>註冊日期</h6>
+                            <h6>{{member.REGISTRATION_DATE}}</h6>
+                        </li>
+                        <li>
+                            <h6>帳號狀態</h6>
+                            <h6 v-if="member.MEMBER_STATUS == 1">正常</h6>
+                            <h6 v-else>鎖定</h6>
+                        </li>
+                        <li>
+                            <h6>重設密碼</h6>
+                            <button class="btn" @click="resetPassword($event)">密碼重置</button>
+                            <input v-if="showResetPassword" type="text" v-model="newPassword" placeholder="新密碼">
+                            <button v-if="showResetPassword" class="btn" @click="updatePassword($event)">確認修改</button>
+                        </li>
+                    </ul>
+                </form>
+                <h6>訂單記錄</h6>
+                <div class="right_down">
+                    <ul>
+                        <li>
+                            <h6 class="col-8">訂單編號</h6>
+                            <h6 class="col-2">購買日期</h6>
+                            <h6 class="col-2">購買金額</h6>
+                        </li>
+                    </ul>
+                    <div class="B_accordion">
+                        <div class="B_accordion-item">
+                            <div class="B_accordion-header">
+                                <i class="bi-plus-lg col-1"></i>
+                                <h6 class="col-7">ak4l79e3k68sly</h6>
+                                <h6 class="col-2">2023/1/15</h6>
+                                <h6 class="col-2">$2,798</h6>
+                            </div>
+                            <div class="B_accordion-content B-shopitem">
+                                <ul>
+                                    <li>
+                                        <img class="" src="./pic/img/cover/7.jpg" alt="">
+                                        <h6 class="col-9">遊戲名稱</h6>
+                                        <h6 class="col-2">$1,399</h6>
+                                    </li>
+                                    <li>
+                                        <img src="./pic/img/cover/7.jpg" alt="">
+                                        <h6 class="col-9">遊戲名稱</h6>
+                                        <h6 class="col-2">$1,399</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="B_accordion-item">
+                            <div class="B_accordion-header">
+                                <i class="bi-plus-lg col-1"></i>
+                                <h6 class="col-7">ak4l79e3k68sly</h6>
+                                <h6 class="col-2">2023/1/15</h6>
+                                <h6 class="col-2">$2,798</h6>
+                            </div>
+                            <div class="B_accordion-content B-shopitem">
+                                <ul>
+                                    <li>
+                                        <img src="./pic/img/cover/7.jpg" alt="">
+                                        <h6 class="col-9">遊戲名稱</h6>
+                                        <h6 class="col-2">$1,399</h6>
+                                    </li>
+                                    <li>
+                                        <img src="./pic/img/cover/7.jpg" alt="">
+                                        <h6 class="col-9">遊戲名稱</h6>
+                                        <h6 class="col-2">$1,399</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="B_accordion-item">
+                            <div class="B_accordion-header">
+                                <i class="bi-plus-lg col-1"></i>
+                                <h6 class="col-7">ak4l79e3k68sly</h6>
+                                <h6 class="col-2">2023/1/15</h6>
+                                <h6 class="col-2">$2,798</h6>
+                            </div>
+                            <div class="B_accordion-content B-shopitem">
+                                <ul>
+                                    <li>
+                                        <img src="./pic/img/cover/7.jpg" alt="">
+                                        <h6 class="col-9">遊戲名稱</h6>
+                                        <h6 class="col-2">$1,399</h6>
+                                    </li>
+                                    <li>
+                                        <img src="./pic/img/cover/7.jpg" alt="">
+                                        <h6 class="col-9">遊戲名稱</h6>
+                                        <h6 class="col-2">$1,399</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 分頁 -->
+            @@include('./layout/B_changepage.html')
+        </div>
+    </main>
+    @@include('./layout/js.html')
+    <script>
+        //手風琴
+        $(function () {
+            $('.B_accordion-content').slideUp();
+            $('.B_accordion-header').click(function () {
+                $('.B_accordion-header').removeClass('active');
+                let icon = $(this).find('i');
+                icon.toggleClass('bi-plus-lg bi-dash-lg');
+                $(this).next().slideToggle();
+            });
+        })
+    </script>
+
+    <script>
+        //針對單獨會員顯示頁面及修改
+        Vue.createApp({
+            data() {
+                return {
+                    member: {},
+                    showResetPassword: false,
+                    newPassword: '',
+                    editMode: false
+                }
+            },
+            methods: {
+                //修改密碼
+                resetPassword(e) {
+                    e.preventDefault();
+                    this.showResetPassword = true;
+                },
+                updatePassword(e) {
+                    e.preventDefault();
+                    // 获取URL中的会员ID参数
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const memberId = urlParams.get('id');
+
+                    // 创建FormData对象
+                    const formData = new FormData();
+                    formData.append('memberId', memberId);
+                    formData.append('newPassword', this.newPassword);
+
+                    // 更新数据库中的密码和MEMBER_STATUS
+                    axios.post(php_url + 'B_resetpassword.php', formData)
+                        .then((response) => {
+                            // 更新成功后的处理逻辑
+                            // 可以在这里重置输入框和相关数据
+                            this.showResetPassword = false;
+                            this.newPassword = '';
+                            this.member.MEMBER_STATUS = 1;
+                            alert("密碼已重置");
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                },
+                //修改暱稱及電話
+                toggleEditSave(e) {
+                    e.preventDefault();
+                    if (this.editMode) {
+                        // 执行保存操作
+                        this.saveMemberData();
+                    } else {
+                        // 切换到编辑模式
+                        this.editMode = true;
+                    }
+                },
+                saveMemberData() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const memberId = urlParams.get('id');
+
+                    const formData = new FormData();
+                    formData.append('memberId', memberId);
+                    formData.append('newNickname', this.member.NICKNAME);
+                    formData.append('newPhone', this.member.PHONE);
+
+                    axios.post(php_url + 'B_updatememberinfo.php', formData)
+                        .then((response) => {
+                            // 更新成功后的处理逻辑
+                            // 可以在这里重置输入框和相关数据
+                            this.newNickname = '';
+                            this.newPhone = '';
+                            alert("資料已更新");
+                            this.editMode = false; // 切换回非编辑模式
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                }
+            },
+            mounted() {
+                // 获取URL中的会员ID参数
+                const urlParams = new URLSearchParams(window.location.search);
+                const memberId = urlParams.get('id');
+
+                // 根据会员ID从服务器请求完整的会员数据
+                axios.all([
+                    axios.get(php_url + 'B_member.php?id=' + memberId),
+                    //   axios.get(php_url + 'B_getMemberData.php?id=' + memberId)
+                ])
+                    .then(axios.spread((memberResponse, memberDataResponse) => {
+                        this.member = memberResponse.data;
+                        // 处理其他请求的响应数据
+                    }))
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+        }).mount('#B_member_info');
+    </script>
+</body>
+
+</html>

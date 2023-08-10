@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstem | 訂單資訊</title>
+    @@include('./layout/style.html')
+</head>
+
+<body class="B">
+    <!-- header -->
+    @@include('./layout/B_header.html')
+    <main class="B_order_info">
+        <!-- 左側選單列 -->
+        @@include('./layout/B_nav.html')
+
+        <!-- 右側 -->
+        <div class="right col-12">
+            <a href="./B_order.html">
+                <h6>回上一頁</h6>
+            </a>
+            <div class="right_main" id="B_order_info">
+                <form action="" method="">
+                    <div class="B_button">
+                        <h4>訂單內容</h4>
+                    </div>
+                    <ul>
+                        <li>
+                            <h6>訂單編號</h6>
+                            <h6>{{order.ORDER_CODE}}</h6>
+                        </li>
+                        <li>
+                            <h6>會員編號</h6>
+                            <h6>{{order.MEMBERSHIP_NUMBER}}</h6>
+                        </li>
+                        <li>
+                            <h6>會員帳號</h6>
+                            <h6>{{order.MEMBER_ACCOUNT}}</h6>
+                        </li>
+                    </ul>
+                </form>
+                <h6>訂單內容</h6>
+                <div class="B-shopitem">
+                    <ul>
+                        <li v-for="(game,index) in games" :key="index">
+                            <img :src="game.GAME_COVER" alt="">
+                            <h6>{{game.GAME_NAME}}</h6>
+                            <p class="backend_color_active">{{game.DISCOUNT_PERCENTAGE}}</p>
+                            <template v-if="order.DISCOUNT_PERCENTAGE !== null && order.DISCOUNT_PERCENTAGE > 0">
+                                <h6>${{ game.AFTER_DISCOUNT_PRICE }}</h6>
+                                <p>${{ game.ORIGINAL_PRICE }}</p>
+                            </template>
+                            <template v-else>
+                                <h6>${{ game.ORIGINAL_PRICE }}</h6>
+                            </template>
+                        </li>
+                    </ul>
+                </div>
+                <div class="B_order_info_down">
+                    <ul>
+                        <li>
+                            <h6>優惠券使用</h6>
+                            <h6>結算</h6>
+                        </li>
+                        <li>
+                            <h6>{{order.COUPON_NAME}}</h6>
+                            <h6>折扣</h6>
+                            <h6>總金額</h6>
+                        </li>
+                        <li>
+                            <h6>{{order.COUPON_DISCOUNT}}元</h6>
+                            <h6>{{order.COUPON_DISCOUNT}}</h6>
+                            <h6>{{order.SUM_PRICE}}元</h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    @@include('./layout/js.html')
+
+    <script>
+        //渲染單獨訂單資料
+        Vue.createApp({
+            data() {
+                return {
+                    order: [],
+                    // orders: []
+                    games:[]
+                }
+            },
+            methods: {
+
+            },
+            mounted() {
+                // 获取URL中的会员ID参数
+                const urlParams = new URLSearchParams(window.location.search);
+                const orderId = urlParams.get('id');
+
+                // 根据会员ID从服务器请求完整的会员数据
+                axios.get(php_url + 'B_order.php?id=' + orderId)
+                    .then((response) => {
+                        this.order = response.data.order;
+                        // this.orders = response.data;
+                        this.games = response.data.game
+                        // console.log(response.data);
+                        // console.log(this.order);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+        }).mount('#B_order_info')
+    </script>
+</body>
+
+</html>

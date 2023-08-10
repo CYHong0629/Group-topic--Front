@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstem | 智能推薦</title>
+    @@include('./layout/style.html')
+    <!-- 以下可以放自己的link -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v16.0"
+        nonce="9d9gnSwC"></script>
+</head>
+
+<body>
+    <!-- header -->
+    @@include('./layout/header.html')
+
+    <main class="AI_test">
+        <!-- 請從這邊開始寫 -->
+        <div id="particles-js">
+        </div>
+        <!-- 內容 -->
+        <section class="AI_test_container">
+            <div class="AI_test_wrapper" id="app">
+                <!-- ========================結果卡片============================ -->
+                <div class="share_card" style="display: block;">
+                    <div class="share_card_logo">
+                        <img src="./pic/img/LOGO/ORANGEWEB.png" alt="">
+                    </div>
+                    <div class="share_card_content">
+                        <h2 class="share_card_title">適合你的遊戲類型為 </h2>
+                        <h1 class="share_card_game">{{gameType}}遊戲</h1>
+                        <h5 class="share_card_contents"> {{gameTypeContent}} </h5>
+                        <button class="get_coupon_button" @click="isShow = true">取得優惠券</button>
+                        <div class="share_card_icons">
+                            <a target="_blank" class="fb-xfbml-parse-ignore"
+                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftibamef2e.com%2Fthd101%2Fg2%2Fdist%2FAI_test_index.html&amp;src=sdkpreparse"
+                                class="fb-xfbml-parse-ignore">
+
+                                <div class="fb-share-button"
+                                    data-href="https://tibamef2e.com/thd101/g2/dist/AI_test_index.html">
+                                    <i class="bi bi-facebook"></i>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="https://twitter.com/?lang=zh-Hant" target="_blank">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                            <a href="https://discord.com/" target="_blank">
+                                <i class="bi bi-discord"></i>
+                            </a>
+                        </div>
+
+                        <h5 class="get_coupon_text">分享找尋一同遊玩的最佳夥伴</h5>
+                    </div>
+                </div>
+                <!-- ========================結果卡片============================ -->
+
+
+                <!-- ========================優惠碼彈窗============================ -->
+                <div class="coupon_popover" :style="maskStyle" @click.self="toggleMask">
+                    <div class="coupon_block">
+                        <h2 class="coupon_block_text">恭喜獲得優惠券</h2>
+                        <h3 class="coupon_block_text">優惠代碼:</h3>
+                        <!-- 優惠碼區 -->
+                        <div class="coupon_number_block">
+                            <h1 class="coupon_number">TK666</h1>
+                        </div>
+                        <h3 class="coupon_block_text"> 請至 <a href="#" @click="toMember">會員中心-會員優惠券</a>
+                            輸入代碼
+                        </h3>
+                        <h3 class="coupon_block_text"> (一位會員限領取一次) </h3>
+                    </div>
+                </div>
+                <!-- ========================優惠碼彈窗============================ -->
+            </div>
+        </section>
+    </main>
+
+    <!-- javascript -->
+    @@include('./layout/js.html')
+    <script src="./js/particles.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    gameType: "",
+                    gameTypeContent: "",
+                    isShow: false
+                }
+            },
+            computed: {
+                maskStyle() {
+                    return {
+                        'display': this.isShow ? '' : 'none'
+                    };
+                }
+            },
+            methods: {
+                //點擊遮罩關閉
+                toggleMask() {
+                    this.isShow = !this.isShow;
+                },
+                //抓出儲存的遊戲類型及描述
+                getGameType() {
+                    this.gameType = JSON.parse(localStorage.getItem("gameType"));
+                    this.gameTypeContent = JSON.parse(localStorage.getItem("gameTypeContent"));
+                },
+                toMember() {
+                    let loging = document.querySelector(".header_logout");
+                    if (!loging) {
+                        alert("請先登入會員");
+                        location.href = "./login.html";
+                    } else {
+                        location.href = "./member_center.html";
+                    }
+                }
+            },
+            mounted() {
+                this.getGameType();
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

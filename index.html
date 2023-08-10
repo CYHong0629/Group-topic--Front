@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brainstem</title>
+  @@include('./layout/style.html')
+  <!-- 以下可以放自己的link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+</head>
+
+<body>
+  <!-- header -->
+  @@include('./layout/header.html')
+  <main class="index">
+    <!-- 請從這邊開始寫 -->
+    <div class="wrapper">
+
+      <div class="banner">
+        <ul class="dpart">
+          <li>
+            <a href="#">
+              <img src="./pic/img/banner/Mask group.jpg" alt="" />
+            </a>
+            <div class="d_1">
+              <p class="p1">Cyberpunk 2077 電馭叛客</p>
+              <p class="p2">
+                是一款第一人稱視角角色扮演遊戲 。玩家扮演成為「V」的可客製化角色 。
+              </p>
+              <a href="./product_information.html?id=57">
+                <button @click="redirectToProduct(57)">立即購買</button>
+              </a>
+            </div>
+          </li>
+          <li>
+            <a href="#">
+              <img src="./pic/img/banner/Group 571.jpg" alt="" />
+            </a>
+            <div class="d_1">
+              <p class="p1">Sekiro™: Shadows Die Twice - GOTY Edition</p>
+              <p class="p2">
+                保護繼承古老血統的年輕卿子是你的使命，卻也使你成為危險的葦名一族與其他狠毒敵人的標靶。
+              </p>
+              <a href="./product_information.html?id=59">
+                <button onclick="redirectToProduct(59)">立即購買</button>
+              </a>
+            </div>
+          </li>
+          <li>
+            <a href="#">
+              <img src="./pic/img/banner/Rectangle 715.jpg" alt="" />
+            </a>
+            <div class="d_1">
+              <p class="p1">拉比哩比 Rabi-Ribi</p>
+              <p class="p2">
+                主角艾莉娜原本是一隻普通兔子，某天醒來發現身處未知之地，並變成了一個人類兔女郎，開始踏上了尋找家園的冒險之旅。
+              </p>
+              <a href="./product_information.html?id=45">
+                <button>立即購買</button>
+              </a>
+            </div>
+          </li>
+          <li>
+            <a href="#">
+              <img src="./pic/img/banner/Rectangle 716.jpg" alt="" />
+            </a>
+            <div class="d_1">
+              <p class="p1">The Witcher® 3: Wild Hunt</p>
+              <p class="p2">
+                體驗浪跡天涯的賞金獵人生活。目標和目的地都由玩家自行決定。狩獵正在摧殘村莊的凶殘怪物，或者助狡詐的王子一臂之力完成見不得人的勾當。
+              </p>
+              <a href="./product_information.html?id=53">
+                <button>立即購買</button>
+              </a>
+            </div>
+          </li>
+          <li>
+            <a href="#">
+              <img src="./pic/img/banner/Rectangle 717.jpg" alt="" />
+            </a>
+            <div class="d_1">
+              <p class="p1">艾爾登法環</p>
+              <p class="p2">
+                艾爾登法環是以正統黑暗奇幻世界為舞台， 走進遼闊的場景與地下迷宮探索未知，挑戰困難重重的險境，享受克服困境時的成就感吧。
+              </p>
+              <a href="./product_information.html?id=58">
+                <button>立即購買</button>
+              </a>
+            </div>
+          </li>
+
+
+        </ul>
+        <ul class="epart">
+          <li>
+            <a href="#">
+              <div class="img">
+                <img src="./pic/img/product/demo/567.jpg" alt="" />
+              </div>
+              <p>Cyberpunk 2077 電馭叛客</p>
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img">
+                <img src="./pic/img/product/demo/568.jpg" alt="" />
+              </div>
+              <p>Sekiro™: Shadows Die Twice - GOTY Edition</p>
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img">
+                <img src="./pic/img/product/demo/569.jpg" alt="" />
+              </div>
+              <p>Rabi-Ribi 拉比哩比</p>
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img">
+                <img src="./pic/img/product/demo/711.jpg" alt="" />
+              </div>
+              <p>The Witcher® 3: Wild Hunt</p>
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <div class="img">
+                <img src="./pic/img/product/demo/712.jpg" alt="" />
+              </div>
+              <p>艾爾登法環</p>
+              <span></span>
+            </a>
+          </li>
+        </ul>
+        <!--RWD-->
+        <ul class="fpart">
+          <!-- Swiper -->
+          <div class="swiper mySwiper11">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="./pic/img/game/57/5.jpg" alt="" />
+                <div class="d_2">
+                  <p class="p1">Cyberpunk 2077 電馭叛客</p>
+                  <p class="p2">
+                    是一款第一人稱視角角色扮演遊戲 。玩家扮演成為「V」的可客製化角色 。
+                  </p>
+                  <a href="./product_information.html?id=57">
+                    <button>立即購買</button>
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img src="./pic/img/game/59/5.jpg" alt="" />
+                <div class="d_2">
+                  <p class="p1">Sekiro™: Shadows Die Twice - GOTY Edition</p>
+                  <p class="p2">
+                    保護繼承古老血統的年輕卿子是你的使命，卻也使你成為危險的葦名一族與其他狠毒敵人的標靶。
+                  </p>
+                  <a href="./product_information.html?id=59">
+                    <button>立即購買</button>
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img src="./pic/img/product/R.jpg" alt="" />
+                <div class="d_2">
+                  <p class="p1">Rabi-Ribi 拉比哩比</p>
+                  <p class="p2">
+                    主角艾莉娜本是一隻可愛的普通兔子，某天醒來後發現自己變成兔女郎。在尋找回家的路程中面對未知的冒險。
+                  </p>
+                  <a href="./product_information.html?id=45">
+                    <button>立即購買</button>
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img src="./pic/img/game/53/3.jpg" alt="" />
+                <div class="d_2">
+                  <p class="p1">The Witcher® 3: Wild Hunt</p>
+                  <p class="p2">
+                    　末光是一款戰鬥流暢、獨具氛圍的動作冒險遊戲，背景設於一個充滿謎團的複雜世界。
+                  </p>
+                  <a href="./product_information.html?id=53">
+                    <button>立即購買</button>
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img src="./pic/img/game//58/5.jpg" alt="" />
+                <div class="d_2">
+                  <p class="p1">艾爾登法環</p>
+                  <p class="p2">
+                    艾爾登法環是以正統黑暗奇幻世界為舞台， 走進遼闊的場景與地下迷宮探索未知，挑戰困難重重的險境，享受克服困境時的成就感吧。
+                  </p>
+                  <a href="./product_information.html?id=58">
+                    <button>立即購買</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+
+      <section class="section1">
+        <div class="apart">
+          <div class="box1">
+            <p>最受歡迎 〉</p>
+          </div>
+
+          <div class="arrow_box">
+            <div class="arrow_left btn">
+              <i class="bi bi-chevron-left"></i>
+            </div>
+            <div class="arrow_right btn">
+              <i class="bi bi-chevron-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="bpart">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <!--第一頁-->
+              <div class="swiper-slide" id="b">
+                <div class="row" id="app2">
+                  <div class="col-2 hoverable" v-for="product in productsPage1" :key="product.id"
+                    @mouseenter="setHovered(product, true)" @mouseleave="setHovered(product, false)"
+                    :class="{ 'hovered2': product.hovered, 'hovered2-others': hovered && !product.hovered }">
+                    <a :href="'./product_information.html?id=' + product.id">
+                      <span class="discount">-{{ product.discount }}%</span>
+                      <img :src="product.image" :alt="product.title" />
+                      <h3 class="title">{{ product.title }}</h3>
+                      <ul class="money">
+                        <li class="price">NT {{ product.price }}</li>
+                        <li class="price2">NT {{ product.price2 }}</li>
+                      </ul>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+              <!--第二頁-->
+              <div class="swiper-slide" id="b">
+                <div class="row" id="app3">
+                  <div class="col-2 hoverable" v-for="product in productsPage2" :key="product.id"
+                    @mouseenter="setHovered(product, true)" @mouseleave="setHovered(product, false)"
+                    :class="{ 'hovered2': product.hovered, 'hovered2-others': hovered && !product.hovered }">
+                    <a :href="'./product_information.html?id=' + product.id">
+                      <span class="discount">-{{ product.discount }}%</span>
+                      <img :src="product.image" :alt="product.title" />
+                      <h3 class="title">{{ product.title }}</h3>
+                      <ul class="money">
+                        <li class="price">NT {{ product.price }}</li>
+                        <li class="price2">NT {{ product.price2 }}</li>
+                      </ul>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- RWD 頁面 -->
+        <div class="cpart">
+          <div class="swiper mySwiper2">
+            <div class="swiper-wrapper">
+              <!-- 第一頁 -->
+              <div class="swiper-slide">
+                <div class="row">
+
+                  <div class="col">
+                    <a href="./product_information.html?id=48">
+                      <span class="discount">-10%</span>
+                      <img src="./pic/img/cover/48.jpg" alt="" />
+                      <h3 class="title">Crying Pony</h3>
+                      <ul class="money">
+                        <li class="price">NT 203</li>
+                        <li class="price2">NT 250</li>
+                      </ul>
+                    </a>
+                    </a>
+                  </div>
+                  <div class="col">
+                    <a href="./product_information.html>id=24">
+                      <span class="discount">-20%</span>
+                      <img src="./pic/img/cover/24.jpg" alt="" />
+                      <h3 class="title">靈犀出版社物語 (Magazine Mogul)</h3>
+                      <ul class="money">
+                        <li class="price">NT 110</li>
+                        <li class="price2">NT 172</li>
+                      </ul>
+                    </a>
+                  </div>
+                  <div class="col">
+
+                    <a href="./product_information.html?id=55">
+                      <span class="discount">-10%</span>
+                      <img src="./pic/img/cover/55.jpg" alt="" />
+                      <h3 class="title">GWENT: The Witcher Card</h3>
+                      <ul class="money">
+                        <li class="price">NT 0</li>
+                        <li class="price2">NT 0</li>
+                      </ul>
+                    </a>
+                  </div>
+
+                </div>
+                <div class="indicate">
+                  <p>Right →</p>
+                </div>
+              </div>
+              <!-- 第二頁 -->
+              <div class="swiper-slide">
+                <div class="row">
+
+                  <div class="col">
+                    <a href="./product_information.html?id=41">
+                      <span class="discount">-20%</span>
+                      <img src="./pic/img/cover/41.jpg" alt="" />
+                      <h3 class="title">遊戲發展國++ (Game Dev Story)</h3>
+                      <ul class="money">
+                        <li class="price">NT 110</li>
+                        <li class="price2">NT 172</li>
+                      </ul>
+                    </a>
+                  </div>
+                  <div class="col">
+                    <a href="./product_information.html?id=46">
+                      <span class="discount">-10%</span>
+                      <img src="./pic/img/cover/46.jpg" alt="" />
+                      <h3 class="title">夜光</h3>
+                      <ul class="money">
+                        <li class="price">NT 217</li>
+                        <li class="price2">NT 268</li>
+                      </ul>
+                    </a>
+                  </div>
+                  <div class="col">
+                    <a href="./product_information.html?id=25">
+                      <span class="discount">-20%</span>
+                      <img src="./pic/img/cover/25.jpg" alt="" />
+                      <h3 class="title">開羅拉麵店 (The Ramen Sensei)</h3>
+                      <ul class="money">
+                        <li class="price">NT 110</li>
+                        <li class="price2">NT 172</li>
+                      </ul>
+                    </a>
+                  </div>
+
+
+                </div>
+                <div class="indicate">
+                  <p>Right →</p>
+                </div>
+              </div>
+              <!-- 第三頁 -->
+              <div class="swiper-slide">
+                <div class="row">
+                  <div class="col">
+                    <a href="./product_information.html?id=49">
+                      <span class="discount">-20%</span>
+                      <img src="./pic/img/cover/49.jpg" alt="" />
+                      <h3 class="title">Hunger Dungeon</h3>
+                      <ul class="money">
+                        <li class="price">NT 0</li>
+                        <li class="price2">NT 0</li>
+                      </ul>
+                    </a>
+                  </div>
+                  <div class="col">
+                    <a href="./product_information.html?id=35">
+                      <span class="discount">-20%</span>
+                      <img src="./pic/img/cover/35.jpg" alt="" />
+                      <h3 class="title">合戰忍者村物語 (Ninja Village)</h3>
+                      <ul class="money">
+                        <li class="price">NT 110</li>
+                        <li class="price2">NT 172</li>
+                      </ul>
+                    </a>
+                  </div>
+                  <div class="col">
+                    <a href="./product_information.html?id=34">
+                      <span class="discount">-20%</span>
+                      <img src="./pic//img/cover/34.jpg" alt="" />
+                      <h3 class="title">都市大亨物語 (Venture Towns)</h3>
+                      <ul class="money">
+                        <li class="price">NT 140</li>
+                        <li class="price2">NT 172</li>
+                      </ul>
+                    </a>
+                  </div>
+
+
+                </div>
+                <div class="indicate">
+                  <p>← Back</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section2">
+        <ul class="apart">
+          <div class="box1">
+            <p>促銷遊戲 〉</p>
+          </div>
+          <div class="arrow_box">
+            <div class="arrow_left2 btn">
+              <i class="bi bi-chevron-left"></i>
+            </div>
+            <div class="arrow_right2 btn">
+              <i class="bi bi-chevron-right"></i>
+            </div>
+          </div>
+        </ul>
+        <ul class="bpart">
+          <div class="swiper mySwiperz">
+            <div class="swiper-wrapper">
+
+              <!-- 第一頁 -->
+              <div class="swiper-slide" id="a">
+                <div class="row" id="app4">
+
+                  <div class="col-3 hoverable" v-for="(item, index) in app4Items" :key="index"
+                    @mouseenter="setHovered(item, true)" @mouseleave="setHovered(item, false)"
+                    :class="{ 'hovered2': item.hovered, 'hovered2-others': hovered && !item.hovered }">
+                    <a :href="'./product_activity.html?id=' + item.id">
+                      <img :src="item.img" alt="" />
+                      <div class="container">
+                        <h1 class="preferential">-{{ item.preferential }}%</h1>
+                        <p class="time">{{ item.time }}</p>
+                      </div>
+                    </a>
+                  </div>
+
+
+                </div>
+              </div>
+              <!---第二頁--->
+              <div class="swiper-slide" id="a">
+                <div class="row" id="app5">
+
+                  <div class="col-3 hoverable" v-for="(item, index) in app5Items" :key="index"
+                    @mouseenter="setHovered(item, true)" @mouseleave="setHovered(item, false)"
+                    :class="{ 'hovered2': item.hovered, 'hovered2-others': hovered && !item.hovered }">
+                    <a :href="'./product_activity.html?id=' + item.id">
+                      <img :src="item.img" alt="" />
+                      <div class="container">
+                        <h1 class="preferential">-{{ item.preferential }}%</h1>
+                        <p class="time">{{ item.time }}</p>
+                      </div>
+                    </a>
+                  </div>
+
+
+                  <div class="col-3" id="a">
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.htm?id=24">
+                        <span class="discount">-20%</span>
+                        <img src="./pic/img/cover/24.jpg" alt="" />
+                        <h3 class="title">靈犀出版社物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 137</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html?id=38">
+                        <span class="discount">-20%</span>
+                        <img src="./pic/img/cover/38.jpg" alt="" />
+                        <h3 class="title">箱庭鐵道物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 137</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html?id=26">
+                        <span class="discount">-20%</span>
+                        <img src="./pic/img/cover/26.jpg" alt="" />
+                        <h3 class="title">動畫製作物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 137</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html?id=39">
+                        <span class="discount">-10%</span>
+                        <img src="./pic/img/cover/39.jpg" alt="" />
+                        <h3 class="title">冒險村物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 154</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-3" id="a">
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html?id=29">
+                        <span class="discount">-10%</span>
+                        <img src="./pic/img/cover/29.jpg" alt="" />
+                        <h3 class="title">漫畫道場物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 154</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html?id=31">
+                        <span class="discount">-20%</span>
+                        <img src="./pic/img/cover/31.jpg" alt="" />
+                        <h3 class="title">百貨公司物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 137</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html?id=34">
+                        <span class="discount">-10%</span>
+                        <img src="./pic/img/cover/34.jpg" alt="" />
+                        <h3 class="title">都市大亨物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 154</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html?id=36">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/36.jpg" alt="" />
+                        <h3 class="title">海鮮壽司物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 137</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--第三頁-->
+              <!-- <div class="swiper-slide" id="a">
+                <div class="row">
+                  <div class="col-3 hoverable" id="a">
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/7.jpg" alt="" />
+                        <h3 class="title">星之開羅君</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/8.jpg" alt="" />
+                        <h3 class="title">晴空農場物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/9.jpg" alt="" />
+                        <h3 class="title">創意漢堡物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/10.jpg" alt="" />
+                        <h3 class="title">溫泉物語2 </h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-3" id="a">
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="./game_library.html">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/11.jpg" alt="" />
+                        <h3 class="title">開拓神秘島DX </h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/12.jpg" alt="" />
+                        <h3 class="title">網球俱樂部物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/13.jpg" alt="" />
+                        <h3 class="title">閃耀滑雪場物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 227</li>
+                          <li class="price2">NT 379</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/14.jpg" alt="" />
+                        <h3 class="title">森林露營物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-3" id="a">
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="./game_library.html">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/15.jpg" alt="" />
+                        <h3 class="title">百萬樂曲物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/17.jpg" alt="" />
+                        <h3 class="title">豪華大郵輪物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/18.jpg" alt="" />
+                        <h3 class="title">宇宙探險隊</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/19.jpg" alt="" />
+                        <h3 class="title">棒球學院物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-3" id="a">
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="./game_library.html">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/20.jpg" alt="" />
+                        <h3 class="title">衝刺！賽車物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/21.jpg" alt="" />
+                        <h3 class="title">遊戲中心物語 </h3>
+                        <ul class="money">
+                          <li class="price">NT 103</li>
+                          <li class="price2">NT 172</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/22.jpg" alt="" />
+                        <h3 class="title">賽馬牧場物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 227</li>
+                          <li class="price2">NT 379</li>
+                        </ul>
+                      </a>
+                    </div>
+                    <div class="a-1 hoverable">
+                      <div class="hearts">
+                        <a href="#">
+                          <i class="bi bi-heart"></i>
+                        </a>
+                      </div>
+                      <a href="./product_information.html">
+                        <span class="discount">-40%</span>
+                        <img src="./pic/img/cover/23.jpg" alt="" />
+                        <h3 class="title">大江戶物語</h3>
+                        <ul class="money">
+                          <li class="price">NT 959</li>
+                          <li class="price2">NT 1,599</li>
+                        </ul>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </ul>
+        <ul class="cpart">
+          <div class="swiper mySwiper3">
+            <div class="swiper-wrapper">
+              <!-- RWD 第一頁 -->
+              <div class="swiper-slide">
+                <div class="rw">
+                  <div class="col-3">
+                    <a href="./product_activity.html?id=1">
+                      <img src="./pic/img/indexsec1/arwd.jpg" alt="" />
+                      <div class="container">
+                        <p class="time">剩餘2天14小時25分鐘</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-3">
+                    <a href="./product_activity.html?id=2">
+                      <img src="./pic/img/indexsec1/brwd.jpg" alt="" />
+                      <div class="container">
+                        <p class="time">剩餘2天14小時25分鐘</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="indicate">
+                  <p>← left</p>
+                </div>
+
+              </div>
+              <!-- RWD 第二頁 -->
+              <div class="swiper-slide">
+                <div class="rw">
+                  <div class="col-3">
+                    <a href="./product_activity.html?id=3">
+                      <img src="./pic/img/indexsec1/crwd.jpg" alt="" />
+                      <div class="container">
+                        <p class="time">剩餘2天14小時25分鐘</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-3">
+                    <a href="./product_activity.html?id=4">
+                      <img src="./pic/img/indexsec1/drwd.jpg" alt="" />
+                      <div class="container">
+                        <p class="time">剩餘2天14小時25分鐘</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="indicate">
+                  <p>← left</p>
+                </div>
+              </div>
+              <!-- 第三頁 -->
+              <div class="swiper-slide">
+                <div class="rw">
+                  <div class="col-3">
+                    <a href="./product_activity.html?id=5">
+                      <img src="./pic/img/indexsec1/erwd.jpg" alt="" />
+                      <div class="container">
+                        <p class="time">剩餘2天14小時25分鐘</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-3">
+                    <a href="./product_activity.html?id=6">
+                      <img src="./pic/img/indexsec1/frwd.jpg" alt="" />
+                      <div class="container">
+                        <p class="time">剩餘2天14小時25分鐘</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="indicate">
+                  <p>Back → </p>
+                </div>
+              </div>
+            </div>
+        </ul>
+      </section>
+
+      <section class="section3">
+        <div class="apart">
+          <!--左-->
+          <div class="box">
+            <div class="box1">
+              <p>全球發行</p>
+              <a href="./product.html">
+                <!-- <div class="btn more">查看更多</div> -->
+              </a>
+            </div>
+            <div class="box2">
+              
+              <a href="./product_information.html?id=59">
+                <img src="./pic/img/cover/59.jpg" alt="">
+                <div class="text">
+                  <p class="title">Sekiro™: Shadows Die Twice - GOTY Edition</p>
+                  <div class="bottom">
+                    <div class="discount">-10%</div>
+                    <div class="money">
+                      <div class="price">$ 1,431</div>
+                      <div class="price2">$ 1590</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+              
+              <a href="./product_information.html?id=58">
+                <img src="./pic/img/cover/58.jpg" alt="">
+                <div class="text">
+                  <p class="title">艾爾登法環</p>
+                  <div class="bottom">
+                    <div class="discount">-20%</div>
+                    <div class="money">
+                      <div class="price">$ 1,432</div>
+                      <div class="price2">$ 1,780</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+            
+              <a href="./product_information.html?id=57">
+                <img src="./pic/img/cover/57.jpg" alt="">
+                <div class="text">
+                  <p class="title">Cyberpunk 2077</p>
+                  <div class="bottom">
+                    <div class="discount">-20%</div>
+                    <div class="money">
+                      <div class="price">$ 1,279</div>
+                      <div class="price2">$ 1,599</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+              <a href="./product_information.html?id=56">
+                <img src="./pic/img/cover/56.jpg" alt="">
+                <div class="text">
+                  <p class="title">GWENT: Rogue Mage</p>
+                  <div class="bottom">
+                    <div class="discount">-20%</div>
+                    <div class="money">
+                      <div class="price">$ 215</div>
+                      <div class="price2">$ 269</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+           
+              <a href="./product_information.html?id=24">
+                <img src="./pic/img/cover/24.jpg" alt="">
+                <div class="text">
+                  <p class="title">靈犀出版社物語 (Magazine Mogul)</p>
+                  <div class="bottom">
+                    <div class="discount">-20%</div>
+                    <div class="money">
+                      <div class="price">$ 137</div>
+                      <div class="price2">$ 172</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!--中-->
+          <div class="box">
+            <div class="box1">
+              <p>最多人遊玩</p>
+              <a href="./product.html">
+                <!-- <div class="btn more">查看更多</div> -->
+              </a>
+            </div>
+            <div class="box2">
+           
+              <a href="./product_information.html?id=41">
+                <img src="./pic/img/cover/41.jpg" alt="">
+                <div class="text">
+                  <p class="title">遊戲發展國++ (Game Dev Story)
+                  </p>
+                  <div class="bottom">
+                    <!-- <div class="discount">-10%</div> -->
+                    <div class="money">
+                      <div class="price">$ 172</div>
+                      <!-- <div class="price2">$ 150</div> -->
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+              <a href="./product_information.html?id=25">
+                <img src="./pic/img/cover/25.jpg" alt="">
+                <div class="text">
+                  <p class="title">開羅拉麵店 (The Ramen Sensei)</p>
+                  <div class="bottom">
+                    <!-- <div class="discount">-40%</div> -->
+                    <div class="money">
+                      <div class="price">$ 172</div>
+                      <!-- <div class="price2">NT 172</div> -->
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+              
+              <a href="./product_information.html?id=34">
+                <img src="./pic/img/cover/34.jpg" alt="">
+                <div class="text">
+                  <p class="title">都市大亨物語 (Venture Towns)</p>
+                  <div class="bottom">
+                    <div class="discount">-10%</div>
+                    <div class="money">
+                      <div class="price">$ 154</div>
+                      <div class="price2">$ 172</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+              
+              <a href="./product_information.html?id=39">
+                <img src="./pic/img/cover/39.jpg" alt="">
+                <div class="text">
+                  <p class="title">冒險村物語 (Dungeon Village)</p>
+                  <div class="bottom">
+                    <div class="discount">-10%</div>
+                    <div class="money">
+                      <div class="price">$ 154</div>
+                      <div class="price2">$ 172</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+
+              <a href="./product_information.html?id=32">
+                <img src="./pic/img/cover/32.jpg" alt="">
+                <div class="text">
+                  <p class="title">夏日水上樂園物語 (Pool Slide Story)</p>
+                  <div class="bottom">
+                    <!-- <div class="discount">-40%</div> -->
+                    <div class="money">
+                      <div class="price">$ 172</div>
+                      <!-- <div class="price2">NT 172</div> -->
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!--右-->
+          <div class="box">
+            <div class="box1">
+              <p>最佳評價</p>
+              <a href="./product.html">
+                <!-- <div class="btn more">查看更多</div> -->
+              </a>
+            </div>
+            <div class="box2">
+            
+              <a href="./product_information.html?id=57">
+                <img src="./pic/img/cover/57.jpg" alt="">
+                <div class="text">
+                  <p class="title">Cyberpunk 2077</p>
+                  <div class="bottom">
+                    <div class="discount">-20%</div>
+                    <div class="money">
+                      <div class="price">$ 1,279</div>
+                      <div class="price2">$ 1,599</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+              
+              <a href="./product_information.html?id=58">
+                <img src="./pic/img/cover/58.jpg" alt="">
+                <div class="text">
+                  <p class="title">艾爾登法環</p>
+                  <div class="bottom">
+                    <div class="discount">-20%</div>
+                    <div class="money">
+                      <div class="price">$ 1,432</div>
+                      <div class="price2">$ 1,790</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+            
+              <a href="./product_information.html?id=53">
+                <img src="./pic/img/cover/53.jpg" alt="">
+                <div class="text">
+                  <p class="title">The Witcher® 3: Wild Hunt</p>
+                  <div class="bottom">
+                    <div class="discount">-10%</div>
+                    <div class="money">
+                      <div class="price">$ 781</div>
+                      <div class="price2">$ 868</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+              
+              <a href="./product_information.html?id=38">
+                <img src="./pic/img/cover/38.jpg" alt="">
+                <div class="text">
+                  <p class="title">住宅夢物語DX (Dream House Days DX)</p>
+                  <div class="bottom">
+                    <!-- <div class="discount">-40%</div> -->
+                    <div class="money">
+                      <div class="price">$ 172</div>
+                      <!-- <div class="price2">NT 172</div> -->
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="box2">
+              
+              <a href="./product_information.html?id=59">
+                <img src="./pic/img/cover/59.jpg" alt="">
+                <div class="text">
+                  <p class="title">Sekiro™: Shadows Die Twice - GOTY Edition</p>
+                  <div class="bottom">
+                    <div class="discount">-10%</div>
+                    <div class="money">
+                      <div class="price">$ 1,431</div>
+                      <div class="price2">$ 1,590</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bpart">
+          <div class="swiper mySwiper2">
+            <div class="swiper-wrapper">
+              <!--第一頁-->
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="box1">
+                    <p>全球發行</p>
+                    <a href="./product.html">
+                      <div class="btn more">查看更多</div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    <a href="./product_information.html?id=59">
+                      <img src="./pic/img/cover/59.jpg" alt="">
+                      <div class="text">
+                        <p class="title">Sekiro™: Shadows Die Twice - GOTY Edition</p>
+                        <div class="bottom">
+                          <div class="discount">-10%</div>
+                          <div class="money">
+                            <div class="price">$ 1,431</div>
+                            <div class="price2">$ 1,590</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="box2">
+                  
+                    <a href="./product_information.html?id=58">
+                      <img src="./pic/img/cover/58.jpg" alt="">
+                      <div class="text">
+                        <p class="title">艾爾登法環</p>
+                        <div class="bottom">
+                          <div class="discount">-20%</div>
+                          <div class="money">
+                            <div class="price">NT 1,432</div>
+                            <div class="price2">$ 1,790</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                  
+                    <a href="./product_information.html?id=57">
+                      <img src="./pic/img/cover/57.jpg" alt="">
+                      <div class="text">
+                        <p class="title">Cyberpunk 2077</p>
+                        <div class="bottom">
+                          <div class="discount">-20%</div>
+                          <div class="money">
+                            <div class="price">$ 1,279</div>
+                            <div class="price2">$ 1,599</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                  
+                    <a href="./product_information.html?id=56">
+                      <img src="./pic/img/cover/56.jpg" alt="">
+                      <div class="text">
+                        <p class="title">GWENT: Rogue Mage</p>
+                        <div class="bottom">
+                          <div class="discount">-20%</div>
+                          <div class="money">
+                            <div class="price">$ 215</div>
+                            <div class="price2">$ 269</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                  
+                    <a href="./product_information.html?id=54">
+                      <img src="./pic/img/cover/54.jpg" alt="">
+                      <div class="text">
+                        <p class="title">Thronebreaker: The Witcher Tales</p>
+                        <div class="bottom">
+                          <div class="discount">-10%</div>
+                          <div class="money">
+                            <div class="price">$ 539</div>
+                            <div class="price2">$ 599</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="indicate">
+                  <p>← left</p>
+                </div>
+              </div>
+              <!--第二頁-->
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="box1">
+                    <p>最多人遊玩</p>
+                    <a href="./product.html">
+                      <div class="btn more">查看更多</div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html?id=42">
+                      <img src="./pic/img/cover/42.jpg" alt="">
+                      <div class="text">
+                        <p class="title">貓博物館</p>
+                        <div class="bottom">
+                          <div class="discount">-10%</div>
+                          <div class="money">
+                            <div class="price">$ 135</div>
+                            <div class="price2">$ 150</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html?id=24">
+                      <img src="./pic/img/cover/24.jpg" alt="">
+                      <div class="text">
+                        <p class="title">靈犀出版社物語 (Magazine Mogul)
+                        </p>
+                        <div class="bottom">
+                          <div class="discount">-20%</div>
+                          <div class="money">
+                            <div class="price">$ 137</div>
+                            <div class="price2">$ 172</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                  
+                    <a href="./product_information.html?id=34">
+                      <img src="./pic/img/cover/34.jpg" alt="">
+                      <div class="text">
+                        <p class="title">都市大亨物語 (Venture Towns)</p>
+                        <div class="bottom">
+                          <div class="discount">-10%</div>
+                          <div class="money">
+                            <div class="price">$ 154</div>
+                            <div class="price2">$ 172</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html?id=25">
+                      <img src="./pic/img/cover/25.jpg" alt="">
+                      <div class="text">
+                        <p class="title">開羅拉麵店</p>
+                        <div class="bottom">
+                          <!-- <div class="discount">-40%</div> -->
+                          <div class="money">
+                            <div class="price">$ 172</div>
+                            <!-- <div class="price2">NT 172</div> -->
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html?id=32">
+                      <img src="./pic/img/cover/32.jpg" alt="">
+                      <div class="text">
+                        <p class="title">夏日水上樂園物語 (Pool Slide Story)</p>
+                        <div class="bottom">
+                          <!-- <div class="discount">-40%</div> -->
+                          <div class="money">
+                            <div class="price">$ 172</div>
+                            <!-- <div class="price2">NT 172</div> -->
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="indicate">
+                  <p>← left</p>
+                </div>
+              </div>
+              <!--第三頁-->
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="box1">
+                    <p>最佳評價</p>
+                    <a href="./product.html">
+                      <div class="btn more">查看更多</div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html?id=57">
+                      <img src="./pic/img/cover/57.jpg" alt="">
+                      <div class="text">
+                        <p class="title">Cyberpunk 2077</p>
+                        <div class="bottom">
+                          <div class="discount">-20%</div>
+                          <div class="money">
+                            <div class="price">$ 1,279</div>
+                            <div class="price2">$ 1,599</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html?id=58">
+                      <img src="./pic/img/cover/58.jpg" alt="">
+                      <div class="text">
+                        <p class="title">艾爾登法環</p>
+                        <div class="bottom">
+                          <div class="discount">-20%</div>
+                          <div class="money">
+                            <div class="price">$ 1,432</div>
+                            <div class="price2">$ 1,790</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html">
+                      <img src="./pic/img/cover/53.jpg" alt="">
+                      <div class="text">
+                        <p class="title">The Witcher® 3: Wild Hunt</p>
+                        <div class="bottom">
+                          <div class="discount">-10%</div>
+                          <div class="money">
+                            <div class="price">$ 781</div>
+                            <div class="price2">$ 868</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html?id=38">
+                      <img src="./pic/img/cover/38.jpg" alt="">
+                      <div class="text">
+                        <p class="title">住宅夢物語DX (Dream House Days DX)</p>
+                        <div class="bottom">
+                          <!-- <div class="discount">-40%</div> -->
+                          <div class="money">
+                            <div class="price">NT 172</div>
+                            <!-- <div class="price2">NT 172</div> -->
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="box2">
+                    
+                    <a href="./product_information.html?id=59">
+                      <img src="./pic/img/cover/59.jpg" alt="">
+                      <div class="text">
+                        <p class="title">Sekiro™: Shadows Die Twice - GOTY Edition</p>
+                        <div class="bottom">
+                          <div class="discount">-10%</div>
+                          <div class="money">
+                            <div class="price">$ 1,431</div>
+                            <div class="price2">$ 1,590</div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="indicate">
+                  <p>back →</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section4">
+        <div class="box1">
+          <div>
+            <p>精選新聞 〉</p>
+          </div>
+        </div>
+        <div class="box2">
+          <div class="best_news">
+            <div class="news_card_column col-5">
+              <a href="./news.html">
+                <img src="./pic/img/news/aaa.jpg" alt="">
+                <div class="news_info">
+                  <div class="news_date">2023/5/30</div>
+                  <div class="news_icon">
+                    <span>222<i class="bi bi-hand-thumbs-up"></i>
+                    </span>
+                    <i class="bi bi-share-fill"></i>
+                  </div>
+                </div>
+                <div class="title">
+                  <h3>把聖休亞瑞當自己家！《暗黑破壞神 4》釋出新影片 團隊談客製化角色外觀及遊玩風格
+                  </h3>
+                </div>
+                <div class="news_text">
+                  <p>Blizzard 今日公開《暗黑破壞神
+                    4》新遊戲深入解析影片，開發團隊成員針對遊戲設計核心之一「玩出自我」分享見解，介紹多樣客製化遊玩風格及角色外觀。
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="news_card_column col-5">
+              <a href="./news.html">
+                <img src="./pic/img/news/bbb.jpg" alt="">
+                <div class="news_info">
+                  <div class="news_date">2023/5/28</div>
+                  <div class="news_icon">
+                    <span>288<i class="bi bi-hand-thumbs-up"></i>
+                    </span>
+                    <i class="bi bi-share-fill"></i>
+                  </div>
+                </div>
+                <div class="title">
+                  <h3>懸疑冒險遊戲《春逝百年抄》手機版今推出 原聲音樂同步上架串流平台
+                  </h3>
+                </div>
+                <div class="news_text">
+                  <p>《春逝百年抄 The Centennial Case》為圍繞著永恆生命展開的「新本格」派懸疑冒險遊戲，玩家將挑戰解開橫跨一百年的殺人案之謎，以邏輯解開百年的謎團。
+                  </p>
+                </div>
+              </a>
+            </div>
+            <div class="news_card_column col-5">
+              <a href="./news.html">
+                <img src="./pic/img/news/ccc.jpg" alt="">
+                <div class="news_info">
+                  <div class="news_date">2023/5/26</div>
+                  <div class="news_icon">
+                    <span>326<i class="bi bi-hand-thumbs-up"></i>
+                    </span>
+                    <i class="bi bi-share-fill"></i>
+                  </div>
+                </div>
+                <div class="title">
+                  <h3>《風起三國之亂世逐鹿》事前預約正式開啟 挑戰系統八大模式全公開
+                  </h3>
+                </div>
+                <div class="news_text">
+                  <p>由阿爾發遊戲代理，全新 3D 擬真戰場兵將策略遊戲《風起三國之亂世逐鹿》，官方於今日宣佈事前預約App Store、Google Play 雙平台商店預約正式啟動。
+                  </p>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <div class="box3">
+          <div class="swiper mySwiper3">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="newscard">
+                  <a href="./news.html">
+                    <img src="./pic/img/news/aaa.jpg" alt="">
+                    <div class="news_info">
+                      <div class="news_date">2023/5/30</div>
+                      <div class="news_icon">
+                        <span>222<i class="bi bi-hand-thumbs-up"></i>
+                        </span>
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
+                    <div class="title">
+                      <h3>把聖休亞瑞當自己家！《暗黑破壞神 4》釋出新解析影片 團隊談客製化角色外觀及遊玩風格
+                      </h3>
+                    </div>
+                    <div class="news_text">
+                      <p>Blizzard 今（18）日公開《暗黑破壞神
+                        4》新遊戲解析影片，開發團隊成員針對遊戲設計核心之一「玩出自我」分享見解，並介紹多樣客製化遊玩風格及角色外觀。
+                      </p>
+                    </div>
+                    <div class="indicate">
+                      <p>← left</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="newscard">
+                  <a href="./news.html">
+                    <img src="./pic/img/news/bbb.jpg" alt="">
+                    <div class="news_info">
+                      <div class="news_date">2023/5/28</div>
+                      <div class="news_icon">
+                        <span>222<i class="bi bi-hand-thumbs-up"></i>
+                        </span>
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
+                    <div class="title">
+                      <h3>懸疑冒險遊戲《春逝百年抄 The Centennial Case》手機版今日推出 原聲音樂同步上架串流平台
+                      </h3>
+                    </div>
+                    <div class="news_text">
+                      <p>《春逝百年抄 The Centennial Case》為圍繞著永恆生命展開的「新本格」派懸疑冒險遊戲，玩家將挑戰解開橫跨一百年的殺人案之謎，以邏輯解開百年的謎團。
+                      </p>
+                    </div>
+                    <div class="indicate">
+                      <p>← left</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="newscard">
+                  <a href="./news.html">
+                    <img src="./pic/img/news/ccc.jpg" alt="">
+                    <div class="news_info">
+                      <div class="news_date">2023/5/26</div>
+                      <div class="news_icon">
+                        <span>326<i class="bi bi-hand-thumbs-up"></i>
+                        </span>
+                        <i class="bi bi-share-fill"></i>
+                      </div>
+                    </div>
+                    <div class="title">
+                      <h3>事前預約正式開啟!《風起三國之亂世逐鹿》事前預約正式開啟 挑戰系統八大模式全公開
+                      </h3>
+                    </div>
+                    <div class="news_text">
+                      <p>由阿爾發遊戲代理，全新 3D 擬真戰場兵將雙控的策略遊戲《風起三國之亂世逐鹿》，官方於今（18）日宣佈事前預約網站、App Store 與 Google Play 雙平台商店預約均正式啟動。
+                      </p>
+                    </div>
+                    <div class="indicate">
+                      <p>back →</p>
+                    </div>
+                  </a>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+      </section>
+
+      <section class="section5">
+        <div class="box1">
+          <div class="a">
+            <p>熱門類型 〉</p>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="cube color-8">
+              <a href="./product_cate.html?cateId=1">
+                <img src="./pic/img/gameTypeIcon/adventure.svg" alt="">
+                <h2>冒險</h2>
+              </a>
+            </div>
+            <div class="cube color-8">
+              <a href="./product_cate.html?cateId=3">
+                <img src="./pic/img/gameTypeIcon/casual.svg" alt="">
+                <h2>休閒</h2>
+              </a>
+            </div>
+            <div class="cube color-8">
+              <a href="./product_cate.html?cateId=8">
+                <img src="./pic/img/gameTypeIcon/coorperate.svg" alt="">
+                <h2>運動</h2>
+              </a>
+            </div>
+            <div class="cube color-8">
+              <a href="./product_cate.html?cateId=5">
+                <img src="./pic/img/gameTypeIcon/personal.svg" alt="">
+                <h2>動作</h2>
+              </a>
+            </div>
+            <div class="cube color-8">
+              <a href="./product_cate.html?cateId=4">
+                <img src="./pic/img/gameTypeIcon/puzzle.svg" alt="">
+                <h2>解謎</h2>
+              </a>
+            </div>
+            <div class="cube color-8">
+              <a href="./product_cate.html?cateId=2">
+                <img src="./pic/img/gameTypeIcon/role_play.svg" alt="">
+                <h2>角色扮演</h2>
+              </a>
+            </div>
+            <div class="cube color-8">
+              <a href="./product_cate.html?cateId=7">
+                <img src="./pic/img/gameTypeIcon/science_fiction.svg" alt="">
+                <h2>模擬</h2>
+              </a>
+            </div>
+            <div class="cube color-8">
+              <a href="./product_cate.html?cateId=6">
+                <img src="./pic/img/gameTypeIcon/shot.svg" alt="">
+                <h2>策略</h2>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section6">
+
+        <div class="box1">
+          <div class="a">
+            <p>智能推薦 〉</p>
+          </div class="a">
+        </div>
+
+        <div class="box2">
+          <div class="b">
+            <div class="apart">
+              <img src="pic/img/LOGO/ORANGEWEB.png" alt="">
+            </div>
+            <div class="bpart">
+              <div class="b-1">
+                <h1>智能推薦</h1>
+              </div>
+              <div class="b-2">
+                <button>
+                  <a href="./AI_test_index.html">開始測驗</a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+    </div>
+
+
+
+  </main>
+  <!-- footer -->
+  @@include('./layout/footer.html')
+  <!-- javascript -->
+  @@include('./layout/js.html')
+
+  <!-- 以下可以放自己的js -->
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- axios-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.6/axios.min.js"
+    integrity="sha512-06NZg89vaTNvnFgFTqi/dJKFadQ6FIglD6Yg1HHWAUtVFFoXli9BZL4q4EO1UTKpOfCfW5ws2Z6gw49Swsilsg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+
+    //-- banner自動輪撥 --
+    window.addEventListener("DOMContentLoaded", function () {
+      var carouselItemsDpart = document.querySelectorAll(".dpart li");
+      var carouselItemsEpart = document.querySelectorAll(".epart li");
+      var currentIndexDpart = -1;
+      var currentIndexEpart = -1;
+
+      function nextSlideDpart() {
+        if (currentIndexDpart === -1) {
+          currentIndexDpart = 0;
+        } else {
+          carouselItemsDpart[currentIndexDpart].classList.remove("active");
+          currentIndexDpart =
+            (currentIndexDpart + 1) % carouselItemsDpart.length;
+        }
+        carouselItemsDpart[currentIndexDpart].classList.add("active");
+      }
+
+      function nextSlideEpart() {
+        if (currentIndexEpart === -1) {
+          currentIndexEpart = 0;
+        } else {
+          carouselItemsEpart[currentIndexEpart].classList.remove("active");
+          currentIndexEpart =
+            (currentIndexEpart + 1) % carouselItemsEpart.length;
+        }
+        carouselItemsEpart[currentIndexEpart].classList.add("active");
+      }
+
+      // 首次執行輪播
+      nextSlideDpart();
+      nextSlideEpart();
+
+      // 定時器輪播
+      var intervalDpart = setInterval(nextSlideDpart, 10000); // 每10秒切換一次
+      var intervalEpart = setInterval(nextSlideEpart, 10000); // 每10秒切換一次
+
+      // 點擊 epart 的 li 元素時切換 dpart 和 epart 的輪播
+      var epartItems = document.querySelectorAll(".epart li");
+      for (var i = 0; i < epartItems.length; i++) {
+        epartItems[i].addEventListener("click", function () {
+          var clickedIndex = Array.prototype.indexOf.call(epartItems, this);
+
+          carouselItemsDpart[currentIndexDpart].classList.remove("active");
+          carouselItemsEpart[currentIndexEpart].classList.remove("active");
+
+          currentIndexDpart = clickedIndex;
+          currentIndexEpart = clickedIndex;
+
+          carouselItemsDpart[currentIndexDpart].classList.add("active");
+          carouselItemsEpart[currentIndexEpart].classList.add("active");
+
+          clearInterval(intervalDpart);
+          clearInterval(intervalEpart);
+          intervalDpart = setInterval(nextSlideDpart, 10000);
+          intervalEpart = setInterval(nextSlideEpart, 10000);
+        });
+      }
+    });
+
+
+    // -- Banner rwd --
+    window.onload = function () {
+      if (window.matchMedia("(max-width: 1000px)").matches) {
+        setTimeout(function () {
+          var swiper = new Swiper(".mySwiper11", {
+            effect: "cards",
+            grabCursor: true,
+          });
+        }, 600);
+      }
+    };
+
+
+
+    //---section 1最受歡迎---
+    // var swiper = new Swiper(".mySwiper", {});
+
+    var swiperContainer = document.querySelector('.mySwiper');
+
+    var swiperContainer = document.querySelector('.mySwiper');
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.arrow_right',
+        prevEl: '.arrow_left',
+      },
+    });
+
+    document.querySelector('.arrow_right').addEventListener('click', function () {
+      swiper.slideNext(600); // 调整滚动速度，单位为毫秒
+    });
+
+
+
+
+    //---section1 vue3---
+    window.addEventListener('DOMContentLoaded', () => {
+      const createAppInstance = (selector) => {
+        const app = Vue.createApp({
+          data() {
+            return {
+              products: [],
+              pageSize: 5, // 每頁顯示的資料筆數
+              hovered: false // 是否應用hover效果的標誌
+            };
+          },
+          mounted() {
+            this.fetchData();
+          },
+          computed: {
+            productsPage1() {
+              return this.products.slice(0, this.pageSize);
+            },
+            productsPage2() {
+              return this.products.slice(this.pageSize, this.pageSize * 2);
+            }
+          },
+          methods: {
+            fetchData() {
+              axios.get(php_url + 'index_section1.php')
+                .then(response => {
+                  this.products = response.data.map(product => {
+                    const discountPercentage = Math.round(parseFloat(product.discount));
+                    const price1 = Math.round(parseFloat(product.price) * (1 - parseFloat(product.discount) / 100));
+                    return {
+                      ...product,
+                      discount: discountPercentage,
+                      price: price1,
+                      hovered: false // 新增hovered屬性，初始值為false
+                    };
+                  });
+                  this.$nextTick(() => {
+                    // 確保資料已經渲染到頁面上後再執行其他操作
+                    // 例如修改 DOM、綁定事件等
+                  });
+                })
+                .catch(error => {
+                  console.error(error);
+                });
+            },
+            setHovered(product, value) {
+              product.hovered = value;
+              this.hovered = value;
+            }
+          }
+        });
+
+        app.mount(selector);
+      };
+
+      createAppInstance('#app2');
+      createAppInstance('#app3');
+    });
+
+
+    // -------
+    const app4 = Vue.createApp({
+  data() {
+    return {
+      app4Items: [],
+      pageSize: 4,
+      hovered: false // 添加一个hovered属性来控制hover效果
+    };
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      axios
+        .get(php_url + "index_section2.php")
+        .then((response) => {
+          this.app4Items = response.data.slice(0, this.pageSize).map(item => {
+            return {
+              ...item,
+              hovered: false // 新增hovered屬性，初始值為false
+            };
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    setHovered(item, value) {
+      item.hovered = value;
+      this.hovered = value;
+    }
+  }
+});
+
+const app5 = Vue.createApp({
+  data() {
+    return {
+      app5Items: [],
+      pageSize: 2,
+      hovered: false // 添加一个hovered属性来控制hover效果
+    };
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      axios
+        .get(php_url + "index_section2.php")
+        .then((response) => {
+          this.app5Items = response.data.slice(this.pageSize * 2, this.pageSize * 3).map(item => {
+            return {
+              ...item,
+              hovered: false // 新增hovered屬性，初始值為false
+            };
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    setHovered(item, value) {
+      item.hovered = value;
+      this.hovered = value;
+    }
+  }
+});
+
+app4.mount("#app4");
+app5.mount("#app5");
+
+
+
+
+
+
+    // --------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // --section2 促銷遊戲--
+    function handleSwiperBreakpoint() {
+      var swiperContainer = document.querySelector('.mySwiperz');
+      var slide = document.getElementById('a');
+      var swiper = new Swiper(".mySwiperz", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        navigation: {
+          nextEl: '.arrow_right2',
+          prevEl: '.arrow_left2',
+        },
+      });
+
+      function pauseSwiper() {
+        swiperContainer.removeEventListener('click', handleSwiperClick);
+      }
+
+      function resumeSwiper() {
+        swiperContainer.addEventListener('click', handleSwiperClick);
+      }
+
+      function handleSwiperClick() {
+        swiperContainer.scrollLeft += slide.offsetWidth;
+      }
+
+      function checkBreakpoint() {
+        if (window.innerWidth <= 414) {
+          pauseSwiper();
+        } else {
+          resumeSwiper();
+        }
+      }
+
+      checkBreakpoint();
+
+      window.addEventListener('resize', checkBreakpoint);
+    }
+
+    handleSwiperBreakpoint();
+
+
+
+    // -----sec.1 hover效果
+    $(document).ready(function () {
+      $(".hoverable").hover(
+        function () {
+          $(".hoverable").not(this).addClass("hovered");
+        },
+        function () {
+          $(".hoverable").removeClass("hovered");
+        }
+      );
+    });
+
+
+
+    // ----RWD
+
+    //--section3 最暢銷--
+    var swiper2 = new Swiper(".mySwiper2", {
+      grabCursor: true,
+      effect: "creative",
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: ["-120%", 0, -500],
+        },
+        next: {
+          shadow: true,
+          translate: ["120%", 0, -500],
+        },
+      },
+    });
+
+    // --section4 NEWS--
+    var swiper3 = new Swiper(".mySwiper3", {
+      grabCursor: true,
+      effect: "creative",
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: ["-20%", 0, -1],
+        },
+        next: {
+          translate: ["100%", 0, 0],
+        },
+      },
+    });
+
+// -------------------------------------------
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstem | 遊戲資訊修改頁</title>
+    @@include('./layout/style.html')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body class="B">
+    <!-- header -->
+    @@include('./layout/B_header.html')
+    <main class="B_games_info_2">
+        <!-- 左側選單列 -->
+        @@include('./layout/B_nav.html')
+
+        <!-- 右側 -->
+        <div class="right col-12">
+            <a href="./B_games.html">
+                <h6>回上一頁</h6>
+            </a>
+            <div class="right_main" id="B_insert_game">
+                <form>
+                    <div class="B_button">
+                        <h4>遊戲內容</h4>
+                        <button class="btn" @click="insertGame">儲存</button>
+                    </div>
+                    <div class="right_main_top">
+                        <ul>
+                            <li>
+                                <label for="gamesID">
+                                    <h6>遊戲名稱</h6>
+                                </label>
+                                <input type="text" v-model="gameName" name="" id="gamesID" placeholder="請輸入遊戲名稱">
+                            </li>
+                            <li id="logo">
+                                <label for="fileInput">
+                                    <h6>遊戲封面</h6>
+                                </label>
+                                <img :src="imageUrl" alt="">
+                                <input id="fileInput" name="gameCover" type="file" @change="handleFileChange">
+                            </li>
+                            <li>
+                                <label for="issue_date">
+                                    <h6>發行日期</h6>
+                                </label>
+                                <input type="date" name="" v-model="releaseDate" id="issue_date" placeholder="年/月/日">
+                            </li>
+                            <li>
+                                <label for="publisher">
+                                    <h6>開發商</h6>
+                                </label>
+                                <input type="text" name="" v-model="publisher" id="publisher">
+                            </li>
+                            <li>
+                                <label for="developer">
+                                    <h6>開發人員</h6>
+                                </label>
+                                <input type="text" name="" v-model="developer" id="developer">
+                            </li>
+                            <li>
+                                <label for="game_level">
+                                    <h6>遊戲級別</h6>
+                                </label>
+                                <select name="game_level" id="game_level" v-model="ratingID">
+                                    <option v-for="(rating, index) in ratings" :key="index" :value="rating.RATING_ID">
+                                        {{ rating.RATING_NAME }}
+                                    </option>
+                                </select>
+                            </li>
+                            <li class="B_grid_two b_backend_color">
+                                <h6>遊戲類型</h6>
+                                <div class="B_games_type">
+                                    <ul>
+                                        <li v-for="(category, index) in categorys" :key="index">
+                                            <input type="checkbox" :name="category.CATEGORY_NAME" v-model="categoryid"
+                                                id="category.CATEGORY_NAME">
+                                            <label :for="category.CATEGORY_NAME">{{category.CATEGORY_NAME}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="B_grid_two b_backend_color" style="display: none;">
+                                <h6>活動類型</h6>
+                                <div class="B_type">
+                                    <ul>
+                                        <li v-for="(activity, index) in activitys" :key="index">
+                                            <input type="radio" name="type" :id="activity.ACTIVITY_NAME"
+                                                @click="selectActivity(activity)">
+                                            <label :for="activity.ACTIVITY_NAME">{{activity.ACTIVITY_NAME}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="B_grid_four" style="display: none;">
+                                <label for="Event_start_time">
+                                    <h6>活動開始時間</h6>
+                                </label>
+                                <input type="date" name="" id="Event_start_time" v-model="startTime"
+                                    placeholder="年/月/日">
+
+                                <label for="Event_end_time">
+                                    <h6>活動結束時間</h6>
+                                </label>
+                                <input type="date" name="" id="Event_end_time" v-model="endTime" placeholder="年/月/日">
+                            </li>
+                            <li style="display: none;">
+                                <label for="Product_discount">
+                                    <h6>活動折扣</h6>
+                                </label>
+                                <input type="text" name="" id="Product_discount" v-model="percentage"
+                                    placeholder="請輸入折扣%數">
+                            </li>
+                            <li>
+                                <label for="commodity_price">
+                                    <h6>商品金額</h6>
+                                </label>
+                                <input type="text" name="" v-model="originalPrice" id="commodity_price"
+                                    placeholder="請輸入金額">
+                            </li>
+                            <li class="B_grid_two">
+                                <label for="game_instructions">
+                                    <h6>遊戲說明</h6>
+                                </label>
+                                <textarea name="" id="game_instructions" v-model="gameIntro" cols="100" rows="20"
+                                    placeholder="請輸入遊戲說明"></textarea>
+                            </li>
+                            <li class="B_grid_two">
+                                <label for="system_requirement">
+                                    <h6>系統需求</h6>
+                                </label>
+                                <textarea name="" id="system_requirement" v-model="systemRequirement" cols="100"
+                                    rows="30" placeholder="請輸入系統需求"></textarea>
+                            </li>
+                            <li style="display: none;">
+                                <label for="gameStatus">
+                                    <h6>狀態</h6>
+                                </label>
+                                <input type="hidden" name="gameStatus" id="gameStatus" value="1">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="games_info_2_down">
+                        <h6>遊戲圖片</h6>
+                        <div id="B_upload_pic">
+                            <input v-if="!images.length || images[images.length - 1].saved" type="file"
+                                @change="handleFileUpload" multiple>
+                            <ul>
+                                <li v-for="(image, index) in images" :key="index">
+                                    <img :src="image.url" :alt="image.name">
+                                    <input type="text" v-model="image.description" placeholder="輸入圖片說明"
+                                        v-show="!image.saved">
+                                    <h6 v-if="image.saved">{{ image.description }}</h6>
+                                    <template v-if="!image.saved">
+                                        <button @click="saveImage(index, $event)">保存</button>
+                                    </template>
+                                    <template v-else>
+                                        <button @click="startEditing(index, $event)">編輯</button>
+                                        <button @click="deleteImage(index, $event)">刪除</button>
+                                    </template>
+                                    <template v-if="image.editMode">
+                                        <input type="text" v-model="image.description" placeholder="輸入圖片說明">
+                                        <button @click="updateImage(index, $event)">更新</button>
+                                        <button @click="cancelEdit(index, $event)">取消</button>
+                                    </template>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    @@include('./layout/js.html')
+
+    <script>
+        // 渲染全部資料
+        Vue.createApp({
+            data() {
+                return {
+                    // newgames: [],
+                    ratings: [],
+                    categorys: [],
+                    activitys: [],
+                    startTime: '', // 活動開始時間
+                    endTime: '', // 活動結束時間
+                    percentage: '',
+                    activityid:'',
+
+
+                    imageUrl: '',
+                    images: [],
+                    gameName: '',
+                    gameCover: '',
+                    gameIntro: '',
+                    originalPrice: '',
+                    gameStatus: '',
+                    releaseDate: '',
+                    publisher: '',
+                    developer: '',
+                    ratingID: '',
+                    categoryid:[],
+                    systemRequirement: '',
+                    totalComments: '0',
+                    purchased: '0'
+                }
+            },
+            methods: {
+                handleFileChange(event) {
+                    const file = event.target.files[0];
+                    const reader = new FileReader();
+
+                    reader.onload = (e) => {
+                        this.imageUrl = e.target.result;
+                    };
+
+                    reader.readAsDataURL(file);
+                },
+                handleFileUpload(event) {
+                    const files = event.target.files;
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            const newImage = {
+                                url: reader.result,
+                                name: file.name,
+                                description: '',
+                                saved: false,
+                                editMode: false
+                            };
+                            this.images.push(newImage);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                    event.target.value = ''; // 清除文件选择的输入框的值
+                },
+                saveImage(index, event) {
+                    event.preventDefault();
+                    this.images[index].saved = true;
+                    this.images[index].editMode = false;
+                },
+                startEditing(index, event) {
+                    event.preventDefault();
+                    this.images[index].editMode = true;
+                },
+                updateImage(index, event) {
+                    event.preventDefault();
+                    this.images[index].editMode = false;
+                },
+                cancelEdit(index, event) {
+                    event.preventDefault();
+                    this.images[index].editMode = false;
+                    this.images[index].description = '';
+                },
+                deleteImage(index, event) {
+                    event.preventDefault();
+                    this.images.splice(index, 1);
+                },
+                initializeFlatpickr() {
+                    flatpickr("#Event_start_time", {
+                        dateFormat: "Y/m/d",
+                        minDate: "today",
+                        theme: "light"
+                    });
+                    flatpickr("#Event_end_time", {
+                        dateFormat: "Y/m/d",
+                        minDate: "today",
+                        theme: "light"
+                    });
+                    flatpickr("#issue_date", {
+                        dateFormat: "Y/m/d",
+                        // minDate: "today",
+                        theme: "light"
+                    });
+                },
+                insertGame(event) {
+                    event.preventDefault();
+                    const formData = new FormData();
+                    // alert(this.activityid);
+                    const image_file = document.getElementById('fileInput')
+                    formData.append('gameName', this.gameName);
+                    formData.append('gameCover', image_file.files[0]);
+                    formData.append('gameIntro', this.gameIntro);
+                    formData.append('originalPrice', this.originalPrice);
+                    formData.append('gameStatus', this.gameStatus);;
+                    formData.append('releaseDate', this.releaseDate);
+                    formData.append('publisher', this.publisher);
+                    formData.append('developer', this.developer);
+                    formData.append('ratingID', this.ratingID);
+                    formData.append('systemRequirement', this.systemRequirement);
+                    formData.append('totalComments', this.totalComments);
+                    formData.append('purchased', this.purchased);
+                    formData.append('categoryid', this.categoryid);
+                    formData.append('activityid', this.activityid);
+                    console.log(this);
+                    // 发送POST请求并插入游戏数据
+                    axios.post(php_url + 'B_insert_game.php', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                        .then((response) => {
+                            // console.log(response);
+                            // 执行成功后的操作
+                            alert("新增成功");
+                            location.href = "B_games.html";
+                            
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            // 处理错误
+                        });
+                },
+                selectActivity(activity) {
+                    // 發送異步請求獲取該活動的時間資料
+                    axios.get(php_url + 'B_insert_game.php', {
+                        params: {
+                            activityId: activity.ACTIVITY_ID
+                        }
+                    })
+                        .then((response) => {
+                            // 更新開始時間和結束時間
+                            this.activityid = activity.ACTIVITY_ID;
+                            this.startTime = activity.ACTIVITY_BEGIN;
+                            this.endTime = activity.ACTIVITY_END;
+                            this.percentage = activity.DISCOUNT_PERCENTAGE;
+
+                            // console.log(this.endTime);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            },
+            mounted() {
+                axios.get(php_url + 'B_insert_game.php')
+                    .then((response) => {
+                        // console.log(response);
+                        this.ratings = response.data.rating;
+                        this.categorys = response.data.category;
+                        this.activitys = response.data.activity;
+                        // console.log(this.activitys);
+                    });
+                this.initializeFlatpickr();
+            }
+        }).mount('#B_insert_game');
+    </script>
+
+</html>

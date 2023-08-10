@@ -1,0 +1,332 @@
+<header class="header">
+    <div class="top">
+        <div class="logo">
+            <a href="./index.html">
+                <picture>
+                    <source media="(max-width: 1000px)" srcset="./pic/img/LOGO/RWD.png" />
+
+                    <img src="./pic/img/LOGO/WEBLOGO.png" alt="" />
+                </picture>
+            </a>
+        </div>
+
+        <nav class="menu">
+            <ul class="a_part">
+                <li data-index="1"><a href="./product.html" class="@@product">商品</a></li>
+                <li data-index="2"><a href="./news.html" class="@@news">新聞</a></li>
+                <li data-index="3"><a href="./AI_test_index.html" class="@@AI_test">智能推薦</a></li>
+                <li data-index="4">
+                    <a href="./game_library.html" class="@@game_library">遊戲庫</a>
+                </li>
+            </ul>
+            <ul class="b_part">
+
+                <div class="topser" id="searchapp">
+                    <form class="ser" @submit.prevent="search" method="get">
+                        <input type="text" v-model="keyword" @input="search" placeholder="  搜尋" />
+                        <button type="submit" @click="redirectToProductInformation">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                    <ul class="result" v-show="displayResults">
+                        <li class="rlist" v-for="(item, index2) in searchResults" v-if="index2 < 5">
+
+                            <a :href="'./product_information.html?id=' + item.id" class="alist">
+                                <img :src="item.image" alt="">
+                                <p class="gtitle">{{ item.title }}</p>
+                            </a>
+                        </li>
+                        <li class="notfind" v-show="searchResults.length === 0">
+                            <p class="p1">找不到相符遊戲</p>
+                        </li>
+                        <li class="more">
+                            <a class="more2" href="./product.html">顯示更多</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <ul class="b_2">
+                    <li data-index="5">
+                        <a href="./about.html">關於</a>
+                    </li>
+
+                    <!-- 註冊 / 登入 -->
+                    <template v-if="!isLogin">
+                        <li data-index="6"><a href="./register.html" data-href="./register.html">註冊</a></li>
+                        <li data-index="7"><a href="./login.html" data-href="./login.html">登入</a></li>
+                    </template>
+
+                    <!-- 頭貼or暱稱第一個字 / 登出 -->
+                    <template v-else>
+                        <li data-index="6">
+                            <a v-if="!nickname" href="./member_center.html" class="google_photo">
+                                <img :src="this.photo" alt="">
+                            </a>
+                            <a v-else href="./member_center.html" class="nickname">
+                                {{nickname}}
+                            </a>
+                        </li>
+                        <li data-index="7">
+                            <a href="#" @click.passive="logout" class="header_logout">登出</a>
+                        </li>
+                    </template>
+
+                    <li data-index="8">
+                        <a href="./checkout.html" data-href="./checkout.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-cart" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                            <!-- 購物車商品數量 -->
+                            <div class="cart_number" v-show="cartItem!=0">{{cartItem}}</div>
+                            <!-- v-show="cartItem!=0" -->
+                        </a>
+
+                    </li>
+                </ul>
+            </ul>
+            <ul class="c_part">
+                <li class="fafa">
+                    <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+                    <div class="toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </li>
+
+                <div class="rwd-item">
+                    <ul class="r-item">
+
+                        <div class="topser" id="searchapp">
+                            <form class="ser" @submit.prevent="search" method="get">
+                                <input type="text" v-model="keyword" @input="search" placeholder="  搜尋" />
+                                <button type="submit" onclick="redirectToProductInformation()">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </form>
+                            <ul class="result" v-show="displayResults">
+                                <li class="rlist" v-for="(item, index2) in searchResults" v-if="index2 < 5">
+
+                                    <a href="./product_information.html" class="alist">
+                                        <img :src="item.image" alt="">
+                                        <p class="gtitle">{{ item.title }}</p>
+                                    </a>
+                                </li>
+                                <li class="notfind" v-show="searchResults.length === 0">
+                                    <p class="p1">找不到相符遊戲</p>
+                                </li>
+                                <li class="more">
+                                    <a class="more2" href="./product.html">顯示更多</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <li><a href="./product.html">商品 </a></li>
+                        <li><a href="./news.html">新聞 </a></li>
+                        <li><a href="./AI_test_index.html">智能推薦</a></li>
+                        <li><a href="./game_library.html">遊戲庫 </a></li>
+                        <li><a href="./about.html">關於 </a></li>
+                        <li><a href="./login.html">登入 </a></li>
+                        <li><a href="./member_center.html">會員中心</a></li>
+                        <li><a href="./checkout.html">購物車</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+@@include('js.html')
+<script src="./js/constant.js"></script>
+
+<script>
+    // ==========RWD漢堡選單收合==========
+    $(document).ready(function () {
+        $('.toggle').click(function () {
+            $(this).toggleClass('active');
+            if ($(this).hasClass('active')) {
+                $('.rwd-item').slideDown();
+            } else {
+                $('.rwd-item').slideUp();
+            }
+        })
+    });
+
+    // ===========登入判斷===============
+    Vue.createApp({
+        data() {
+            return {
+                isLogin: false,
+                photo: null,
+                nickname: null,
+                cartItem: 0
+            }
+        },
+        methods: {
+            logout() {
+                axios.defaults.withCredentials = true;
+                axios.post(php_url + 'logout.php')
+                    .then((response) => {
+                        alert("您已登出");
+                        location.href = "login.html";
+                    })
+            }
+        },
+        beforeCreate() {
+            axios.defaults.withCredentials = true;
+            axios.post(php_url + 'login_status.php')
+                .then((response) => {
+                    // console.log(response);
+                    this.isLogin = response.data.isLogin;
+                    this.photo = response.data.photo;
+                    // console.log(response.data.nickname)
+                    // if (response.data.nickname && response.data.nickname.length > 0) {
+                    //     this.nickname = response.data.nickname.substring(0, 1);
+                    // }
+                })
+        },
+        created() {
+            let keys = Object.keys(localStorage);
+            // console.log(keys);
+            // 找出good_開頭的的key
+            let good_key = keys.filter((key) => { return key.startsWith("good_"); });
+            // console.log(good_key.length);
+            this.cartItem = good_key.length;
+        }
+    }).mount(".b_2");
+
+    // -------------------active----------------
+    document.addEventListener("DOMContentLoaded", function () {
+        const lis = document.querySelectorAll(".a_part li, .b_2 li");
+        lis.forEach(function (li, index) {
+            const anchor = li.querySelector("a");
+            anchor.addEventListener("click", function (event) {
+                if (!event.currentTarget.classList.contains("header_logout")) {
+                    event.preventDefault();
+                    const href = anchor.getAttribute("href");
+                    const url = new URL(href, window.location.href);
+                    url.searchParams.set("activeTab", index);
+                    window.location.href = url.toString();
+                }
+            });
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const activeTab = getActiveTabFromURL();
+        if (activeTab !== null) {
+            activateTab(activeTab);
+        }
+    });
+
+    function getActiveTabFromURL() {
+        const url = new URL(window.location.href);
+        const activeTab = url.searchParams.get("activeTab");
+        return activeTab !== null ? parseInt(activeTab) : null;
+    }
+
+    function activateTab(index) {
+        const lis = document.querySelectorAll(".a_part li, .b_2 li");
+        lis.forEach(function (li, i) {
+            const anchor = li.querySelector("a");
+            if (i === index) {
+                anchor.classList.add("active");
+            } else {
+                anchor.classList.remove("active");
+            }
+        });
+    }
+
+    // ===========Search Bar===============
+
+    // button轉址
+    function redirectToProductInformation() {
+        if (searchapp.selectedProduct) {
+            const productId = searchapp.selectedProduct.id;
+            window.location.href = "./product_information.html?id=" + productId;
+        }
+    }
+
+    // 串資料庫
+    var searchapp = Vue.createApp({
+        data() {
+            return {
+                keyword: '',
+                searchResults: [],
+                displayResults: false,
+                index2: 0,
+                selectedProduct: null  // 添加选中的物件属性
+            };
+        },
+        methods: {
+            redirectToProductInformation() {
+                if (this.selectedProduct) {
+                    const productId = this.selectedProduct.id;
+                    window.location.href = "./product_information.html?id=" + productId;
+                }
+            },
+
+            search() {
+                axios
+                    .get(php_url + 'header_search.php', { params: { keyword: this.keyword } })
+                    .then(response => {
+                        this.searchResults = response.data.slice(0, 5);
+                        console.log(response.data);
+                        this.displayResults = true;
+                        if (this.searchResults.length === 0) {
+                            document.querySelector('.notfind').style.display = 'block';
+                        } else {
+                            document.querySelector('.notfind').style.display = 'none';
+                        }
+
+                        // 将选中的物件信息存储到selectedProduct中
+                        if (this.searchResults.length > 0) {
+                            this.selectedProduct = this.searchResults[0];  // 这里假设选择第一个物件
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        },
+        mounted() {
+            var searchInput = document.querySelector('.ser input');
+            var result = document.querySelector('.result');
+            var notfind = document.querySelector('.notfind');
+
+            result.style.display = 'none';
+            notfind.style.display = 'none';
+
+            document.addEventListener('click', hideResult);
+            document.addEventListener('touchstart', hideResult);
+
+            searchInput.addEventListener('click', function (event) {
+                event.stopPropagation();
+            });
+
+            searchInput.addEventListener('input', function () {
+                if (searchInput.value.trim() !== '') {
+                    result.style.display = 'block';
+                } else {
+                    result.style.display = 'none';
+                }
+            });
+
+            function hideResult() {
+                result.style.display = 'none';
+            }
+        }
+    });
+
+    searchapp.mount('#searchapp');
+
+    // ===========近期預覽===============
+
+
+
+
+
+
+</script>
